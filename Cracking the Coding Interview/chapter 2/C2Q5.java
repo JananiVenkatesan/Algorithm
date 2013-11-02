@@ -45,13 +45,12 @@ our linked list.
 */
 
 
-public LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2, 
-	int carryon){
+public LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2, int carryon){
 	/* We're done if both lists are null and the carry value is 0 */
 	if(l1 == null && l2 == null & carryon == 0)
 		return null;
 
-	LinkedListNode result = new LinkedListNode(carryon, null, null);
+	LinkedListNode result = new LinkedListNode(carryon);
 	// Add value, and the data from 11 and 12
 	int value = carryon;
 	if(l1 != null){
@@ -137,7 +136,7 @@ public LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2){
 public LinkedListNode padList(LinkedListNode l, int padding){
 	LinkedListNode head = l;
 	for(int i = 0; i < padding; i++){
-		LinkedListNode n = new LinkedListNode(0, null, null);
+		LinkedListNode n = new LinkedListNode(0);
 		head.prev = n;
 		n.next = head;
 		head = n;
@@ -146,29 +145,28 @@ public LinkedListNode padList(LinkedListNode l, int padding){
 }
 
 public class PartialSum{
-	public LinkedListNode sum = null;
+	public LinkedListNode node = null;
 	public int carry = 0;
 }
 
 public PartialSum addListsHelper(LinkedListNode l1, LinkedListNode l2){
 	if(l1 == null && l2 == null){
-		PartialSum partialSum = new PartialSum();
-		return partialSum;
+		return new PartialSum();
 	}
 	// Add smaller digits recursively
 	PartialSum partialSum = addListsHelper(l1.next, l2.next);
 	// Add carry to current data
 	int value = partialSum.carry + l1.data + l2.data;
 	// Insert sum of current digits
-	LinkedListNode full_result = insertBefore(partialSum.sum, value % 10);
+	LinkedListNode result = insertBefore(partialSum.node, value % 10);
 	// Return sum so far, and the carry value
-	partialSum.sum = full_result;
+	partialSum.node = result;
 	partialSum.carry = val / 10;
 	return partialSum;
 }
 
 public LinkedListNode insertBefore(LinkedListNode list, int value){
-	LinkedListNode node = new LinkedListNode(value, null, null);
+	LinkedListNode node = new LinkedListNode(value);
 	if(list != null){
 		list.prev = node;
 		node.next = list;

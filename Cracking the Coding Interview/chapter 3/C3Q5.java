@@ -7,22 +7,22 @@ Solution:
 */
 
 public class MyQueue<T>{  // use generics  泛型
-	Stack<T> stackNew, stackOld;
+	Stack<T> s1, s2;
 
 	public MyQueue(){
-		stackNew = new Stack<T>();
-		stackOld = new Stack<T>();
+		s1 = new Stack<T>();
+		s2 = new Stack<T>();
 	}
 
 	public int size(){
-		return stackNew.size() + stackOld.size();
+		return s1.size() + s2.size();
 	}
 
 	public void add(T value){
 		/*  Push onto stackNewest, which always has the newest 
 		elements on top
 		*/
-		stackNew.push(value);
+		s1.push(value);
 	}
 
 	/* 
@@ -30,9 +30,9 @@ public class MyQueue<T>{  // use generics  泛型
     usually done so that we can do operations on stackOldest.
 	*/
 	private void shiftStacks(){
-		if(stackOld.isEmpty()){
-			while(!stackNew.isEmpty()){
-				stackOld.push(stackNew.pop());
+		if(s1.isEmpty()){
+			while(!s2.isEmpty()){
+				s1.push(s2.pop());
 			}
 		}
 	}
@@ -44,7 +44,7 @@ public class MyQueue<T>{  // use generics  泛型
 
 	public T remove(){
 		shiftStacks();  // Ensure stackOldest hasthe current elements
-		return stackOld.pop();   // pop the oldest item.
+		return s1.pop();   // pop the oldest item.
 	}
 
 }

@@ -7,6 +7,7 @@ of all the nodes at each depth (e.g., if you have a tree with depth D,
 you'll have D linked lists).
 
 
+
 Solution 1:
 
 	Using depth first search (DFS).
@@ -39,7 +40,9 @@ public ArrayList<LinkedList<TreeNode>> createLevelLinkedList(TreeNode root){
 }
 
 /*
+
 Solution 2:
+
 	Using breadth first search (BFS).
 	we can also implement a modification of breadth first search. With this 
 implementation, we want to iterate through the root first, then level 2, then 
@@ -85,10 +88,10 @@ public ArrayList<LinkedList<TreeNode>>  createLevelLinkedList(TreeNode root){
 
 /*
 	One might ask which of these solutions is more efficient. Both run in 0(N) 
-time, but what about the space efficiency?At first, we might want to claim that 
+time, but what about the space efficiency? At first, we might want to claim that 
 the second solution is more space efficient.
 
-	In a sense,that's correct.The first solution uses O(log N) recursive calls,
+	In a sense, that's correct. The first solution uses O(log N) recursive calls,
 each of which adds a new level to the stack. The second solution, which is iterative, 
 does not require this extra space.
 */

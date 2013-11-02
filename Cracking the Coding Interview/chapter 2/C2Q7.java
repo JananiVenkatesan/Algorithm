@@ -45,7 +45,7 @@ public boolean isPalindrome(LinkedListNode head){
 	LinkedListNode fast = head;
 	LinkedListNode slow = head;
 
-	Stack<Integer> stack = new Stack<Integer>();
+	Stack<Character> stack = new Stack<Character>();
 
 	/* Push elements from first half of linked list onto stack. When 
 	 * fast runner (which is moving at 2x speed) reaches the end of 
@@ -61,10 +61,9 @@ public boolean isPalindrome(LinkedListNode head){
 		slow = slow.next;
 	}
 
-	while(slow != null){
-		int top = stack.pop().intValue();
+	while(!stack.isEmpty()){
 		/* If values are different, then it's not a palindrome */
-		if(top != slow.data){
+		if(slow.data != stack.pop().data){
 			return false;
 		}
 		slow = slow.next；
@@ -105,19 +104,5 @@ public boolean isPalindrome(LinkedListNode head){
 	Result p = isPalindromeRecurse(head, listSize(head));
 	return p.result;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

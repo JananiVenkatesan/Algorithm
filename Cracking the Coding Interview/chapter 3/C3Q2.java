@@ -1,7 +1,8 @@
 /*
 Problem:
-    How would you design a stack which, in addition to push and pop, also has a function
-min which returns the minimum element? Push, pop and min should all operate in 0(1) time.
+    How would you design a stack which, in addition to push and pop, also has a 
+function min which returns the minimum element? Push, pop and min should all 
+operate in 0(1) time.
 
 Solution:
     page 215
@@ -18,26 +19,23 @@ class NodeWithMin{
 
 public class StackWithMin extends Stack<NodeWithMin>{
 	public void push(int value){
-		int newMin = Math.min(value, min());
-		super.push(new NodeWithMin(value, newMin;
+		int min = Math.min(value, min());
+		super.push(new NodeWithMin(value, min);
 	}
 
 	public int min(){
-		if(this.isEmpty()){
-			return Integer.MAX_VALUE;
-		}else{
+		if(!this.isEmpty()){
 			return peek().min;
+		}else{
+			return Integer.MAX_VALUE;
 		}
 	}
 }
 
 //-------------------
 
-public class StackWithMin2 extends Stack<Integer>{
-	Stack<Integer> s2;
-	public StackWithMin2(){
-		s2 = new Stack<Integer>();
-	}
+class StackWithMin2 extends Stack<Integer>{
+	Stack<Integer> s2 = new Stack<Integer>();
 
 	public void push(int value){
 		if(value <= min()){
