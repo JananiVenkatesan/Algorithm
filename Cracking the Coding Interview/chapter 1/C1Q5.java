@@ -19,9 +19,9 @@ public class C1Q5{
 	}
 
 	public static String compressString(String str){
-		if(str == null)
+		if(str == null)  // Otherwise, compiler will report a NullPointerException
 			return null;
-		if(str == "")
+		if(str == "")    // Otherwise, method will return "1"
 			return "";
 			
 		StringBuilder sb = new StringBuilder();
