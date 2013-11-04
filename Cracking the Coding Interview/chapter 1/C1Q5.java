@@ -19,6 +19,11 @@ public class C1Q5{
 	}
 
 	public static String compressString(String str){
+		if(str == null)
+			return null;
+		if(str == "")
+			return "";
+			
 		StringBuilder sb = new StringBuilder();
 		// record number of the same char
 		int count = 1;
