@@ -1,13 +1,18 @@
 /*
+
 Question:
-Implement an algorithm to determine if a string has all unique characters. What if
-you cannot use additional data structures?
+
+	Implement an algorithm to determine if a string has all unique characters. 
+What if you cannot use additional data structures?
+
+
 
 Solution:
-	Given this, one simple optimization we can make to this problem is to automatically 
-return false if the length of the string is greater than the number of unique 
-characters in the alphabet. After all, you can't have a string with 280 unique 
-characters if there are only 256 possible unique characters.
+
+	Given this, one simple optimization we can make to this problem is to 
+automatically return false if the length of the string is greater than the number 
+of unique characters in the alphabet. After all, you can't have a string with 280 
+unique characters if there are only 256 possible unique characters.
 
 */
 
