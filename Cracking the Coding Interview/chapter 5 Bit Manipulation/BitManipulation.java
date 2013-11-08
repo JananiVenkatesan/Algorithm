@@ -1,0 +1,202 @@
+
+Crash Course to Binary Math in Java
+		What is the difference between long, int, short, char, and byte? 
+		The amount of size allocated to variables of each type. 
+
+		Specifically:
+		• a long represents a signed 64-bit value,
+		• an int represents a signed 32-bit value,
+		• a short and a char represent signed 16-bit values, and
+		• a byte represents a signed 8-bit value.
+
+
+
+	Hexadecimal   Binary   Decimal
+		0x0 	0000 	0
+		0x1 	0001 	1
+		0x2 	0010 	2
+		0x3 	0011 	3
+		0x4 	0100 	4
+		0x5 	0101 	5
+		0x6 	0110 	6
+		0x7 	0111 	7
+		0x8 	1000 	8
+		0x9 	1001 	9
+		0xA 	1010 	10
+		0xB 	1011 	11
+		0xC 	1100 	12
+		0xD 	1101 	13
+		0xE 	1110 	14
+		0xF 	1111 	15
+
+
+
+
+A Word About Bit Order
+
+		Assuming that the most-significant-bit is on the left,
+
+		10010110
+		^      ^
+		|      |------- bit 0
+		|
+		|-------------- bit 7
+
+		Notice that the value of bit 0 is 2^0, bit 1 is 2^1, ..., bit 7 is 2^7.
+
+
+
+Shift Operations
+
+
+	LSHIFT
+			We use two left angle-brackets "<<" to mean LSHIFT. LSHIFT means "Left SHIFT"--we shift
+			all bits in a binary number to the left a certain number of spaces. The vacant spaces are filled
+			with 0's. Here's an example:
+			(0001101100111101) << 1 == 0011011001111010 // shift left by 1 space
+			(0001101100111101) << 3 == 1101100111101000 // shift left by 3 spaces
+			(0001101100111101) << 7 == 1001111010000000 // shift left by 7 spaces
+			(0001101100111101) << 15 == 1000000000000000 // shift left by 15 spaces
+			
+			/* 00000001 << 1 = 00000010 */
+			1 << 1 == 2 
+
+			/* 00000001 << 3 = 00001000 */
+			1 << 3 == 8
+
+	RSHIFT
+
+			Examples:
+			(0001101100111101) >> 1 == 0000110110011110 // shift right by 1 space
+			(0001101100111101) >> 3 == 0000001101100111 // shift right by 3 spaces
+			(0001101100111101) >> 3 == 1000001101100111 // shift right by 3 spaces, but preserve negative-ness
+			(0001101100111101) >> 15 == 1000000000000000 // shift right by 15 spaces, but preserve negative-ness
+		
+			/* 11111111 11111111 11111111 11110000 >> 4 = 11111111 11111111 11111111 11111111 */
+			0xFFFFFFF0 >> 4 == 0xFFFFFFFF 
+			  
+			/* 00001111 11111111 11111111 11111111 >> 4 = 00000000 11111111 11111111 11111111 */
+			0x0FFFFFFF >> 4 == 0x00FFFFFF 
+
+
+			/*
+				Note that the right shift operator is signed. Java, as with many languages, 
+			uses the most significant bit as a "sign" bit. 
+
+			A negative number's most significant bit is always '1' in Java. A signed 
+			shift-right will shift in the value of the sign. So, a binary number that begins 
+			with '1' will shift in '1's. A binary number that begins with '0' will shift in 
+			'0's. Java does bitwise operators on integers, so be aware!
+
+			*/
+
+			/* 
+				You can use a third shift operator called the "unsigned shift right" 
+			operator: >>> for always shifting in a "0" regardless of the sign.
+			*/
+
+			/* 10000000 00000000 00000000 00000000 >>> 1 = 01000000 00000000 00000000 00000000 */
+			0x80000000 >>> 1 == 0x40000000
+
+			/* 10000000 00000000 00000000 00000000 >> 1 = 11000000 00000000 00000000 00000000 */
+			0x80000000 >> 1  == 0xC0000000
+
+			/*
+				One of the uses for in creating quick powers of 2. Shifting "1" by 1 is 2, 
+			by 2 is 4, by 4 is 8, etc.. Similarly, a quick shift right will divide a number 
+			by two.
+
+				This is also useful for creating masks. A bitmask is used for isolating or 
+			altering a specific part of a binary number. This is described in detail in the 
+			next section. For now, assume that we want to create the bitmask 00001000. Then 
+			the code is just int bitmask = 1 << 3;
+
+			*/
+
+
+Setting a Bit to 1
+	
+		Using the aforementioned bit operations, it becomes trivial to set a bit to 0 or 1. Suppose we
+		wanted to set the nth bit from the right in a number a to 1 (this act is simply referred to
+		"setting" the bit). Here is how to do this in Java:
+		a = a | (1 << n);
+
+
+Setting a Bit to 0
+
+		To set the nth bit to 0 (this act is also called "unsetting the nth bit"), we use this Java code:
+		a = a & ~(1 << n);
+
+
+Testing a Bit
+
+		Now, suppose we wanted to determine whether or not the nth bit is 0 or 1. Here is how we
+		would do it in Java:
+		
+		if( (a & (1 << n)) == 1 ) {
+			// the bit is 1
+		}
+		else {
+			// the bit is 0
+		}
+
+
+
+
+Binary "BitWise" Operations
+
+		Here are four common bit operators in Java.
+
+		~   - The unary complement   取反
+		&   - Bitwise and
+		^   - Bitwise exclusive or   异或   异或算符的值为真仅当两个运算元中恰有一个的值为真，而另外一个的值为非真
+		|   - Bitwise inclusive or
+
+		Examples:
+
+		~1111 == 0000   
+		~0011 == 1100
+
+		1010 & 0101 == 0000
+		1100 & 0110 == 0100
+
+		1010 ^ 0101 == 1111
+		1100 ^ 0110 == 1010
+
+		1010 | 0101 == 1111
+		1100 | 0110 == 1110
+
+		You can "set" a bit in a number by "or"-ing with another number with that 
+		bit (and only that bit) set to 1.
+
+		10000001 | 00100000 = 10100001 /* turned on bit 5 */
+		10000001 | 1 << 5 = 10100001   /* did the same thing */
+		00000000 | 1 << 2 | 1 << 5 = 00100100
+
+		There are other methods for setting bits that do not require branching. 
+		I do not describe those here, although you might look at this document. You can 
+		turn off a bit by anding with a binary number of all 1s, except for the bit to 
+		be set.
+
+		01010101 & ~(1<<2) == 01010101 & 11111011 == 01010001
+
+
+
+Using ParseInt
+
+		A very convenient way to work with binary numbers in your code is to use the Integer.parseInt() command. Integer.parseInt("101",2) creates an integer with the binary value of 101 (decimal 5). This means that you can even do a for loop with binary in this manner:
+
+		/* loops from 5 up to and including 15 */
+		for (int b = Integer.parseInt("0101",2); b <= Integer.parseInt("1111",2); b++) {
+			/* do stuff here */
+		}
+
+
+
+
+
+
+
+
+
+

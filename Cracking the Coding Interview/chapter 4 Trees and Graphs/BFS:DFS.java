@@ -2,6 +2,7 @@ enum State{
 	Unvisited, Visited;
 }
 
+
 public Node BFS(Node node, Node key){
 	if(node.data == key.data)
 		return node;
@@ -23,6 +24,8 @@ public Node BFS(Node node, Node key){
 	}
 	return null;
 }
+
+//-------------------
 
 public Node DFS(Node node, Node key){
 	if(node.data == key.data)

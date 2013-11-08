@@ -14,7 +14,7 @@ Solution:
 public boolean containsTree(TreeNode t1, TreeNode t2){
 	if(t2 == null)  // the empty tree is always a subtree
 		return true;
-	return subtree(t1, t2); 
+	return searchSubtree(t1, t2); 
 }
 
 public boolean searchSubtree(TreeNode t1, TreeNode t2){
@@ -25,7 +25,7 @@ public boolean searchSubtree(TreeNode t1, TreeNode t2){
 	if(t1.data == t2.data)
 		return matchTree(t1, t2);
 
-	return matchTree(t1.left, t2) || match(t1.right, t2);
+	return searchSubtree(t1.left, t2) || searchSubtree(t1.right, t2);
 }
 
 public boolean matchTree(TreeNode t1, TreeNode t2){

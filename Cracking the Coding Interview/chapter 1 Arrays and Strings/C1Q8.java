@@ -7,6 +7,8 @@ Given two strings, s1 and s2, write code to check If s2 is a rotation of s1 usin
 to isSubstring (e.g., "waterbottLe" is a rotation of "erbottLewat").
 
 
+
+
 Solution:
 
     If we imagine that s2 is a rotation of s1, then we can ask what the rotation point is. For 

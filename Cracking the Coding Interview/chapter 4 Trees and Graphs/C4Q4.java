@@ -61,7 +61,7 @@ ArrayList<LinkedList<TreeNode>> createLevelList(TreeNode root){
 	if(root != null)
 		l.add(root);
 
-	while(l.size() > 0){
+	while(!l.isEmpty()){
 		list.add(l);
 		LinkedList<TreeNode> prev = l;
 		l = new LinkedList<TreeNode>();

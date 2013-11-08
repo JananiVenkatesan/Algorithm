@@ -3,9 +3,10 @@ Problem:
     Implement a function to check if a linked list is a palindrome
 
 
+
 Solution #1: Reverse and Compare
 
-    Our first solution is to reverse the linked list and comparethe reversed list 
+    Our first solution is to reverse the linked list and compare the reversed list 
 to the original list. If they're the same,the lists are identical.
     
     !! Note that when we compare the linked list to the reversed list, we only 
@@ -16,9 +17,9 @@ list must match the second half of the reversed list.
 
 Solution #2: Iterative Approach !!!
 
-    We want to detect linked lists where the front half of the list is the reverse of the 
-second half. How would we do that? <!!! By reversing the front half of the list. A 
-stack can accomplish this. >
+    We want to detect linked lists where the front half of the list is the reverse 
+of the second half. How would we do that? <!!! By reversing the front half of the 
+list. A stack can accomplish this. >
 
     We need to push the first half of the elements onto a stack. We can do this in 
 two different ways, depending on whether or not we know the size of the linked list.
@@ -31,8 +32,8 @@ careful, of course, to handle the case where the length of the linked list is od
 list, using the fast runner/slow runner technique described in the beginning of the 
 chapter. At each step in the loop, we push the data from the slow runner onto a stack.
 When the fast runner hits the end of the list, the slow runner will have reached the 
-middle of the linked list. By this point, the stack will have all the elements from the front of the linked list, 
-but in reverse order.
+middle of the linked list. By this point, the stack will have all the elements from 
+the front of the linked list, but in reverse order.
 
     Now, we simply iterate through the rest of the linked list. At each iteration, 
 we compare the node to the top of the stack. If we complete the iteration without 
@@ -73,8 +74,11 @@ public boolean isPalindrome(LinkedListNode head){
 
 
 /*
+
 Solution #3: Recursive Approach
+
     page 208
+
 */
 
 class Result{

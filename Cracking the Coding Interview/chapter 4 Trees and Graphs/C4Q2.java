@@ -26,15 +26,13 @@ public boolean search(Graph g, Node start, Node end){
 	start.state = State.Visited;
 	while(!queue.isEmpty()){
 		Node n = queue.removeFirst();
-		if(n != null){
-			for(Node adj : n.getUnvisitedAdj()){
-				if(adj == end){
-					return true;
-				} 
-				if(adj != null){
-					queue.addLast(adj);
-					adj.state = State.Visited;
-				}
+		while( (Node adj = getUnvisitedAdj(n)) != null)
+			if(adj == end){
+				return true;
+			} 
+			if(adj != null){
+				queue.addLast(adj);
+				adj.state = State.Visited;
 			}
 		}
 	}

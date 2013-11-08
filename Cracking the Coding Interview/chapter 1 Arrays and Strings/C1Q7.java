@@ -1,7 +1,11 @@
 /*
+
 Problem:
+
     Write an algorithm such that if an element in an M x N matrix is 0, 
 its entire row and column are set to 0.
+
+
 
 Solution:
 */
@@ -25,7 +29,7 @@ public class C1Q7{
 
 		for(int i = 0; i < matrix.length; i++)
 			for(int j = 0; j < matrix[0].length; j++)
-				if(row[i]||column[j])
+				if(row[i] || column[j])
 					matrix[i][j] = 0;
 	}
 

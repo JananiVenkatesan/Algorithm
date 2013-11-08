@@ -1,9 +1,12 @@
 /*
+
 Problem:
+
     Implement an algorithm to find the kth to last element of a singly linked list.
 
 
 Solution:
+
     Assume that the length of the LinkedList is unknown.
 
 
@@ -64,7 +67,7 @@ LinkedListNode nthToLast(LinkedListNode head, int k){
 	if(p2 == null)
 		return null;
 
-	/* Now, movee p1 and p2 at the same speed. When p2 hits the end, 
+	/* Now, move p1 and p2 at the same speed. When p2 hits the end, 
 	p1 will be at the right element. */
 	while(p2.next != null){
 		p1 = p1.next;

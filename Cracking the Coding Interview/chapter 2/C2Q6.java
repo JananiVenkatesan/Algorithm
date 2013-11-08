@@ -5,7 +5,7 @@ Problem:
     Given a circular linked list, implement an algorithm which returns the 
 node at the beginning of the loop.
 
-6
+
 
 Solution:
 
