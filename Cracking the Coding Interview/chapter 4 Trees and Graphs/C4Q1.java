@@ -58,15 +58,12 @@ the current call.
 public static int checkHeight(TreeNode root){
 	if(root == null)
 		return 0;
-
 	int lHeight = checkHeight(root.lChild);
 	int rHeight = checkHeight(root.rChild);
 	if(lHeight == -1 || rHeight == -1){
 		return -1;
 	}
-
-	int heightDiff = Math.abs(lHeight - rHeight);
-	if(heightDiff > 1){
+	if(Math.abs(lHeight - rHeight) > 1){
 		return -1;
 	}else{
 		return Math.max(lHeight, rHeight) + 1;
@@ -76,7 +73,6 @@ public static int checkHeight(TreeNode root){
 boolean isBalanced(TreeNode root){
 	if(root == null)
 		return true;
-
 	if(checkHeight(root) != -1){
 		return true;
 	}else{
