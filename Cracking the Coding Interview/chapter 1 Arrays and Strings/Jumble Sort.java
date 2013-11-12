@@ -61,10 +61,12 @@ public class Solution {
     public static void main(String args[] ) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line = br.readLine();
+        if(line == null)
+            System.out.println(null);
         String[] tokens = line.split(" ");
         boolean[] isInt = new boolean[tokens.length];
-        LinkedList <Integer> int_list = new LinkedList <Integer>();
-        LinkedList <String> string_list = new LinkedList <String>();
+        LinkedList<Integer> int_list = new LinkedList<Integer>();
+        LinkedList<String> string_list = new LinkedList<String>();
         int i = 0;
         for (String token: tokens){
             try{
