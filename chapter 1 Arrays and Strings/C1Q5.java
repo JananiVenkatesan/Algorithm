@@ -15,12 +15,6 @@ Solution:
 
 */
 
-public class C1Q5{
-	public static void main(String[] args){
-		String str = "aabcccccaaa";
-		System.out.println(compressString(str));
-	}
-
 	public static String compressString(String str){
 		if(str == null)  // Otherwise, compiler will report a NullPointerException
 			return null;
@@ -51,7 +45,7 @@ public class C1Q5{
 		*/
 		return sb.toString().length() < str.length() ? sb.toString() : str;
 	}
-}
+
 
 
 

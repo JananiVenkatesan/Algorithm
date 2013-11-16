@@ -2,8 +2,8 @@
 
 Question:
 
-	Implement an algorithm to determine if a string has all unique characters. 
-What if you cannot use additional data structures?
+	Implement an algorithm to determine if a string has all unique 
+characters. What if you cannot use additional data structures?
 
 
 
@@ -17,16 +17,10 @@ unique characters if there are only 256 possible unique characters.
 */
 
 
-public class C1Q1{
-	public static void main(String[] args){
-		String[] words = new String[]{"abcde", "hello", "apple", "kite", "padle"};
 
-		for(String word:words){
-			System.out.println(word+" :  "+isUniqueChars(word));
-		}
-	}
-
-	public static boolean isUniqueChars(String str){
+	public boolean isUniqueChars(String str){
+		if(str == null)
+			return false;
 		if(str.length()>256)
 			return false;
 
@@ -41,4 +35,4 @@ public class C1Q1{
 
 		return true;
 	}
-}
+

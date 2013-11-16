@@ -2,8 +2,9 @@
 
 Problem:
 
-    Assume you have a method isSubstring() which checks if one word is a substring of another. 
-Given two strings, s1 and s2, write code to check If s2 is a rotation of s1 using only one call 
+    Assume you have a method isSubstring() which checks if one 
+word is a substring of another. Given two strings, s1 and s2, 
+write code to check if s2 is a rotation of s1 using only one call 
 to isSubstring (e.g., "waterbottLe" is a rotation of "erbottLewat").
 
 
@@ -28,9 +29,15 @@ And this is precisely how we solve the problem:
 	Step 2: simply do isSubstring(s1s1, s2).
 */
 
-boolean isRotation(String s1, String s2){
+public boolean isRotation(String s1, String s2){
 	// check if s1 and s2 are of equal length and if they are both not null
-	if(s1.length()==s2.length() && s1.length()>0){
+	if(s1 == null && s2 == null){
+		return true;
+	}
+	if(s1 == null || s2 == null){
+		return false;
+	}
+	if(s1.length() == s2.length() && s1.length() > 0){
 		String s1s1 = s1 + s1;
 		return isSubstring(s1s1, s2);
 	}

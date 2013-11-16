@@ -2,7 +2,8 @@
 
 Problem:
 
-    Given two strings, write a method to decide if one is a permutation of the other
+    Given two strings, write a method to decide if one is a 
+permutation of the other
 
 
 Solution:
@@ -92,6 +93,10 @@ public boolean permutation(String s1, String s2){
         if(ascii[c] < 0)
             return false;
     }
+    /* 
+        Because, s1 and s2 are of same length, so there's no need to 
+    test if ascii[c] == 0
+    */
     return true;
 }
 

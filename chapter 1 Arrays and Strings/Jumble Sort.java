@@ -7,7 +7,7 @@ of the list.
 
     The goal is to sort this list in such a way that all 
 words are in alphabetical order and all integers are in
-numerical order.  Furthermore, if the nth element in the 
+numerical order. Furthermore, if the nth element in the 
 list is an integer it must remain an integer, and if it is 
 a word it must remain a word.
 

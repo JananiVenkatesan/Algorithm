@@ -7,7 +7,6 @@ image is 4 bytes, write a method to rotate the image by 90 degrees. Can you
 do this in place?
 
 
-
 Solution:
     
     A better way to do this is to implement the swap index by index. In 

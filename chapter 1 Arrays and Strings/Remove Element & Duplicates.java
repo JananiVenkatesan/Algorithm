@@ -30,6 +30,7 @@ public class Solution{
 }
 
 /*
+
 Problem:
 	Given a sorted array, remove the duplicates in place such 
 that each element appear only once and return the new length.
@@ -51,8 +52,7 @@ public class Solution {
         int count = 0;
         for(int i = 1; i < A.length; i ++){
             // Get the previous element and compare
-            int current = A[i - 1];
-            if(A[i] == current){
+            if(A[i] == A[i - 1]){
                 count ++;
             }else{
                 A[i - count] = A[i];
