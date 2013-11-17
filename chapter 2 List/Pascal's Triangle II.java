@@ -32,11 +32,10 @@ public class Solution {
                 for(Integer i : prev){
                     if(p == null){
                         l.add(i);
-                        p = i;
                     }else{
                         l.add(p + i);
-                        p = i;
                     }
+                    p = i;
                 }
                 l.add(prev.get(0));
                 n++;

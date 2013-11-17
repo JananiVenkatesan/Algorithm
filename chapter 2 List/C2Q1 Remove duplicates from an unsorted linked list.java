@@ -9,17 +9,18 @@ to track duplicates. A simple hash table will work well here.
 */
 
 // use buffer - Time Efficiency -> O(N)
-void deleteDups(LinkedListNode n){
+public void deleteDups(LinkedListNode n){
 	if(n == null)
 		return false;
 	
 	HashTable<LinkedListNode, Boolean> ht = new HashTable<LinkedListNode, Boolean>();
 	LinkedListNode prev = null;
-	while(n != null){
+	while(n.next != null){
 		if(ht.containsKey(n))
 			prev.next = n.next;
 		else{
 			ht.put(n, true);
+			// Critical! Move prev in the bracket!
 			prev = n;
 		}
 		n = n.next;

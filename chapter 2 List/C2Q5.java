@@ -2,7 +2,7 @@
 Problem:
 
     You have two numbers represented by a linked list, where each node 
-contains a single digit.The digits are stored in reverse order, such that 
+contains a single digit. The digits are stored in reverse order, such that 
 the 1's digit (largest digit) is at the head of the list. Write a function 
 that adds the two numbers and returns the sum as a linked list.
 
@@ -47,7 +47,7 @@ our linked list.
 
 public LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2, int carryon){
 	/* We're done if both lists are null and the carry value is 0 */
-	if(l1 == null && l2 == null & carryon == 0)
+	if(l1 == null && l2 == null && carryon == 0)
 		return null;
 
 	LinkedListNode result = new LinkedListNode(carryon);

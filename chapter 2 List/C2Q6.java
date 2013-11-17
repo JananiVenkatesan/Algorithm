@@ -33,8 +33,7 @@ list, then they will meet at the front of the loop.
 */
 
 public LinkedListNode FindLoopBeginning(LinkedListNode head){
-	LinkedListNode slow = head;
-	LinkedListNode fast = head;
+	LinkedListNode slow = head, fast = head;
 	//  Find meeting point. This will be LOOP_SIZE - k steps into the linked list
 	while(slow != fast){
 		slow = slow.next;

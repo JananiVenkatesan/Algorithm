@@ -30,14 +30,12 @@ Solution #1:
 */
 
 public LinkedListNode partition(LinkedListNode node, int x){
-	LinkedListNode lowerStart  = null;
-	LinkedListNode lowerEnd    = null;
-	LinkedListNode higherStart = null;
-	LinkedListNode higherEnd   = null;
+	LinkedListNode lowerStart = null, lowerEnd = null, higherStart = null, higherEnd = null;
 
 	// Partition list
+	LinkedListNode cur = null;
 	while(node != null){
-		LinkedListNode next = node.next;
+		cur = node.next;
 		node.next = null;  // seperate the node with the following ones
 		if(node.data < x){
 			// Insert node into end of before list
@@ -58,7 +56,7 @@ public LinkedListNode partition(LinkedListNode node, int x){
 				higherEnd = higherEnd.next;
 			}
 		}
-		node = next;
+		node = cur;
 	}
 
 	if(lowerStart == null)

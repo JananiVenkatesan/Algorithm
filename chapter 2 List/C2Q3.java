@@ -2,8 +2,8 @@
 
 Problem:
 
-    Implement an algorithm to delete a node in the middle of a singly linked list, 
-given only access to that node.
+    Implement an algorithm to delete a node in the middle of a 
+singly linked list, given only access to that node.
 
 
 Solution:
@@ -14,7 +14,7 @@ next node over to the current node, and then to delete the next node.
 
 */
 
-public static boolean deleteNode(LinkedListNode node){
+public boolean deleteNode(LinkedListNode node){
 	if(n == null || n.next == null)
 		return false;
 	node.data = node.next.data;

@@ -2,7 +2,8 @@
 
 Problem:
 
-    Implement an algorithm to find the kth to last element of a singly linked list.
+    Implement an algorithm to find the kth to last element of a 
+singly linked list.
 
 
 Solution:
@@ -15,7 +16,7 @@ Approach 1: Don't Return the Element - Recursion
 
 */
 
- int nthToLast(LinkedListNode head, int k){
+public int nthToLast(LinkedListNode head, int k){
 	if(head == null)
 		return 0;
 	int i = nthToLast(head.next, k) + 1;
@@ -55,11 +56,10 @@ LinkedListNode nthToLast(LinkedListNode head, int k){
 	if(k <= 0)
 		return null;
 
-	LinkedListNode p1 = head;
-	LinkedListNode p2 = head;
+	LinkedListNode p1 = head, p2 = head;
 
 	// Move p2 -forward k nodes into the list
-	for(int i = 0; i < k; i++){
+	for(int i = 0; i < k - 1 ; i++){
 		if(p2 == null)
 			return null;
 		p2 = p2.next;

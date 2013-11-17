@@ -1,7 +1,8 @@
 /*
 Remove Duplicates from Sorted List I
 
-	Given a sorted linked list, delete all duplicates such that each element appear only once.
+	Given a sorted linked list, delete all duplicates such that each 
+element appear only once.
 
 	For example,
 	Given 1->1->2, return 1->2.
@@ -74,13 +75,12 @@ public class Solution {
         while(current.next != null){
             if(current.val != prev.val && current.val != current.next.val){
                 cur.next = current;
-                cur = cur.next;
-                prev = current;
+                cur = cur.next; // Don't forget to shift cur !!
                 current = current.next;
             }else{
-                prev = current;
                 current = current.next;
             }
+            prev = prev.next;
         }
         if(current.val == prev.val){
             cur.next = null;
