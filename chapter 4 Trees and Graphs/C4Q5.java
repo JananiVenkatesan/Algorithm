@@ -1,7 +1,8 @@
 /*
 Problem:
 
-	Implement a function to check if a binary tree is a binary search tree.
+	Implement a function to check if a binary tree is a binary 
+search tree.
 
 Solution #1:
 	We can implement this solution in two different ways. 
@@ -57,21 +58,18 @@ Solution #2: The Min / Max Solution
 
 */
 
-public boolean isBST(TreeNode n, int min, int max){
-	if(n == null)
-		return true;
-
-	if(n.data < min || n.data > max){
-		return false;
-	}
-	if(!isBST(n.lChild, min, n.data) || !isBST(n.rChild, n.data, max)){
-		return false;
-	}
-	return true;
+public boolean isBST(TreeNode node){
+	return isBST(node, Integer.MIN_VALUE, Integer.MAX_VALUE);
 }
 
-boolean isBST(TreeNode n){
-	return isBST(n, Integer.MIN_VALUE, Integer.MAX_VALUE);
+public boolean isBST(TreeNode node, int min, int max){
+	if(node == null)
+		return true;
+	if(node.val < min || node.val > max)
+		return false;
+	if(!isBST(node.left, min, node.val) || !isBST(node.right, node.val, max))
+		return false;
+	return true;
 }
 
 

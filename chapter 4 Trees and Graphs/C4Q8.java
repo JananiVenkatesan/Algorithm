@@ -21,22 +21,17 @@ public boolean searchSubtree(TreeNode t1, TreeNode t2){
 	// big tree empty & subtree still not found
 	if(t1 == null)
 		return false;
-
 	if(t1.data == t2.data)
 		return matchTree(t1, t2);
-
 	return searchSubtree(t1.left, t2) || searchSubtree(t1.right, t2);
 }
 
 public boolean matchTree(TreeNode t1, TreeNode t2){
-	// if both are empty, nothing left in the subtree
-	if(t1 == null && t2 == null)   
+	if(t1 == null && t2 == null)  // if both are empty, nothing left in the subtree
 		return true;
-	// if one, but not both, are empty
-	if(t1 == null || t2 == null)
+	if(t1 == null || t2 == null)  // if one, but not both, are empty
 		return false;
-	// data doesn't match
-	if(t1.data != t2.data)
+	if(t1.data != t2.data)  // data doesn't match
 		return false
 	return matchTree(t1.left, t2.left) && matchTree(t1.right, t2.right);
 }

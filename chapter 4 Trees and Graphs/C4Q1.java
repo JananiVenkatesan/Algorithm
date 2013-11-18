@@ -55,31 +55,30 @@ the current call.
 
 */
 
-public static int checkHeight(TreeNode root){
-	if(root == null)
-		return 0;
-	int lHeight = checkHeight(root.lChild);
-	int rHeight = checkHeight(root.rChild);
-	if(lHeight == -1 || rHeight == -1){
-		return -1;
-	}
-	if(Math.abs(lHeight - rHeight) > 1){
-		return -1;
-	}else{
-		return Math.max(lHeight, rHeight) + 1;
-	}
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        if(root == null)
+            return true;
+        if(checkHeight(root) == -1)
+            return false;
+        else
+            return true;
+    }
+    
+    public int checkHeight(TreeNode node){
+        if(node == null){
+            return 0;
+        }
+        int lHeight = checkHeight(node.left);
+        int rHeight = checkHeight(node.right);
+        if(lHeight == -1 || rHeight == -1){
+            return -1;
+        }
+        return Math.abs(lHeight - rHeight) > 1 ? -1 : Math.max(lHeight, rHeight) + 1;
+    }
 }
-
-boolean isBalanced(TreeNode root){
-	if(root == null)
-		return true;
-	if(checkHeight(root) != -1){
-		return true;
-	}else{
-		return false;
-	}
-}
-
 
 
 

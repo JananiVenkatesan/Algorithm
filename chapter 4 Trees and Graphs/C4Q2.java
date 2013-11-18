@@ -14,26 +14,24 @@ Solution:
 public enum State{
 	Unvisited, Visited;
 }
+
 // BFS
 public boolean search(Graph g, Node start, Node end){
-	LinkedList<Node> queue = new LinkedList<Node>();
+	LinkedList<Node> list = new LinkedList<Node>();
 
-	for(Node n : g.getNodes()){
-		n.state = State.Unvisited;
+	for(Node node : g){
+		node.state = State.Unvisited;
 	}
 
-	queue.add(start);
 	start.state = State.Visited;
-	while(!queue.isEmpty()){
-		Node n = queue.removeFirst();
-		while( (Node adj = getUnvisitedAdj(n)) != null)
-			if(adj == end){
+	list.add(start);
+	while(list.size() != 0){
+		Node n = list.removeFirst();
+		while((Node adj = n.getAdjUnvisited()) != null){
+			if(adj == end)
 				return true;
-			} 
-			if(adj != null){
-				queue.addLast(adj);
-				adj.state = State.Visited;
-			}
+			adj.state = State.Visited;
+			list.add(adj);
 		}
 	}
 	return false;
@@ -43,27 +41,28 @@ public boolean search(Graph g, Node start, Node end){
 public boolean search(Graph g, Node start, Node end){
 	Stack<Node> stack = new Stack<Node>();
 
-	for(Node n : g.getNodes()){
-		n.state = State.Unvisited；
+	for(Node node: g){
+		node.state = State.Unvisited;
 	}
 
 	start.state = State.Visited;
 	stack.push(start);
 	while(!stack.isEmpty()){
-		Node n = getUnvisitedAdj(stack.peek());
-		if(n == null){
-			stack.pop();
-		}else{
-			if(n == end){
+		Node n = stack.peek();
+		Node adj = n.getAdjUnvisited();
+		if(adj != null){
+			if(adj == end){
 				return true;
 			}
-			n.state = State.Visited();
-			stack.push(n);
+			adj.state = State.Visited;
+			stack.push(adj);
+		}
+		else{
+			stack.pop();
 		}
 	}
 	return false;
 }
-
 
 
 

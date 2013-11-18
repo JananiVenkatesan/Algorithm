@@ -2,9 +2,11 @@
 
 Problem:
 
-	Design an algorithm and write code to find the first common ancestor 
-of two nodes in a binary tree. Avoid storing additional nodes in a data 
-structure.  NOTE: This is not necessarily a binary search tree.
+	Design an algorithm and write code to find the first common 
+ancestor of two nodes in a binary tree. Avoid storing additional 
+nodes in a data structure.  
+
+	NOTE: This is not necessarily a binary search tree.
 
 
 Solution 1:
@@ -14,8 +16,14 @@ Solution 1:
 	loop tranverse
 
 */
+public Node commonAncestor(Node root, Node p, Node q) {
+	if (!covers(root, p) || !covers(root, q)) { // Error check 
+		return null;
+	}
+	return commonAncestorHelper(root, p, q);
+}
 
-public boolean covers(TreeNode root, TreeNode node){
+public boolean covers(Node root, Node node){
 	if(root == null)
 		return false;
 	if(root == node)
@@ -23,30 +31,21 @@ public boolean covers(TreeNode root, TreeNode node){
 	return covers(root.left, node) || covers(root.right, node);
 }
 
-public TreeNode commonAncestorHelper(TreeNode root, TreeNode p, TreeNode q){
-	if(root == null)
+public Node commonAncestorHelper(Node node, Node p, Node q){
+	if(node == null)
 		return null;
-	// root is p or q
-	if(root == p || root == q)
-		return root;
-
-	boolean is_p_on_left = covers(root.left, p);
-	boolean is_q_on_left = covers(root.left, q);
-
-	/* If p and q are on different sides, return root. */
+	if(node == p || node == q)  // node is p or q
+		return node;
+	boolean is_p_on_left = covers(node.left, p);
+	boolean is_q_on_left = covers(node.left, q);
+	/* If p and q are on different sides, return node. */
 	if(is_p_on_left != is_q_on_left)
-		return root;
+		return node;
 	/* Else, they are on the same side. Traverse this side. */
-	TreeNode child = is_p_on_left ? root.left : root.right;
+	Node child = is_p_on_left ? node.left : node.right;
 	return commonAncestorHelper(child, p, q)
 }
 
-public TreeNode commonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-	if (!covers(root, p) | !covers(root, q)) { // Error check 
-		return null;
-	}
-	return commonAncestorHelper(root, p, q);
-}
 
 /*
 
@@ -57,16 +56,16 @@ Solution 2:
 */
 
 public static class Result{
-	public TreeNode node;
+	public Node node;
 	public boolean isAncestor;
 	
-	public Result(TreeNode n, boolean isAnc){
+	public Result(Node n, boolean isAnc){
 		node = n;
 		isAncestor = isAnc;
 	}
 }
 
-public Result commonAncestorHelper(TreeNode root, TreeNode p, TreeNode q){
+public Result commonAncestorHelper(Node root, Node p, Node q){
 	if(root == null)
 		return new Result(null, false);
 	if(root == p && root == q)
@@ -75,11 +74,9 @@ public Result commonAncestorHelper(TreeNode root, TreeNode p, TreeNode q){
 	Result rLeft = commonAncestorHelper(root.left, p, q);
 	if(rLeft.isAncestor)  // found common ancestor already, return that common ancestor
 		return rLeft;
-
 	Result rRight = commonAncestorHelper(root.right, p, q);
 	if(rRight.isAncestor)
 		return rRight;    // found common ancestor already, return that common ancestor
-
 	if(rLeft.node != null && rRight.node != null){
 		/*
 		    both of its subtrees contains one node, but neither of them is common ancestor,
@@ -109,7 +106,7 @@ public Result commonAncestorHelper(TreeNode root, TreeNode p, TreeNode q){
 	}
 }
 
-public TreeNode commonAncestor(TreeNode root, TreeNode p, TreeNode Q){
+public Node commonAncestor(Node root, Node p, Node Q){
 	Result r = commonAncestorHelper(root, p, q);
 	if(r.isAncestor)
 		return r.node;
