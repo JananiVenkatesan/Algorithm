@@ -25,28 +25,41 @@ public Path findPath(TreeNode root, TreeNode p, TreeNode q){
 	root.state = State.Visited;
 	stack.push(root);
 	while(!stack.isEmpty()){
-		TreeNode t = getUnvisitedAdj(stack.peek());
-		if(t == null){
+		TreeNode adj = getUnvisitedAdj(stack.peek());
+		if(adj == null){
 			stack.pop();
 		}else{
-			if(t == p || t == q){
-				copyStackPath(t, stack, path);
+			if(adj == p || adj == q){
+				copyStackPath(adj, stack, path);
 			}
-			t.state = Visited;
-			stack.push(t);
+			adj.state = Visited;
+			stack.push(adj);
 		}
 	}
 	pathToCommonAncestor(path);
 	retrun path;
 }
+
+public Node getUnvisitedAdj(TreeNode node){
+	if(node == null)
+		return  null;
+	if(node.left != null && node.left.state == State.Unvisited)
+		return node.left;
+	else if(node.right != null && node.right.state == State.Unvisited)
+		return node.right;
+	else
+		return null;
+}
 // Copy stack to list in Path
 public void copyStackPath(TreeNode t, Stack<TreeNode> stack, Path path){
 	if(t == p){
 		Stack<TreeNode> pStack = stack;
-		path.pPath.add(pStack.pop());
+		while(!pStack.isEmpty())
+			path.pPath.add(pStack.pop());
 	}else{
 		Stack<TreeNode> qStack = stack;
-		path.qPath.add(qStack.pop());		
+		while(!qStack.isEmpty())
+			path.qPath.add(qStack.pop());		
 	}
 }
 // Remove nodes from root to their common ancestor
