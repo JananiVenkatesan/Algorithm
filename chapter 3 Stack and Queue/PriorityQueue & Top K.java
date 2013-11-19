@@ -76,18 +76,18 @@ public class Leetcode{
     public static void main(String[] args){
         PriorityQueue<Customer> pq = 
             new PriorityQueue<Customer>(3, new Comparator<Customer>(){
-				public int compare(Customer c1, Customer c2){
-					return c2.id - c1.id;
-				}	
-	        });
+                public int compare(Customer c1, Customer c2){
+                    return c1.id - c2.id;  // 最小值在PriorityQueue的队头
+                }   
+            });
 
 	    /*
-		PriorityQueue<Customer> pq = 
+        PriorityQueue<Customer> pq = 
             new PriorityQueue<Customer>(3, new Comparator<Customer>(){
-				public int compare(Customer c1, Customer c2){
-					return c1.id - c2.id;
-				}	
-	        });
+                public int compare(Customer c1, Customer c2){
+                    return c2.id - c1.id;  // 最大值在PriorityQueue的队头
+                }   
+            });
 	    */
 
         Customer[] c = new Customer[6]; 
@@ -103,32 +103,32 @@ public class Leetcode{
         c[5].id = 2;
 
         for(int i = 0; i < c.length; i ++){
-        	if(pq.size() < 3){
-        		pq.add(c[i]);
-        	}else{
-        		if(pq.peek().id > c[i].id){  // 最大值在堆顶，最大值在PriorityQueue的队头
-        			pq.remove();
-        			pq.add(c[i]);
-        		}
-        	}
+            if(pq.size() < 3){
+                pq.add(c[i]);
+            }else{
+                if(pq.peek().id < c[i].id){  // 最小值在堆顶，最小值在PriorityQueue的队头
+                    pq.remove();
+                    pq.add(c[i]);
+                }
+            }
         }
         /*
-		for(int i = 0; i < c.length; i ++){
-        	if(pq.size() < 3){
-        		pq.add(c[i]);
-        	}else{
-        		if(pq.peek().id < c[i].id){  // 最小值在堆顶，最小值在PriorityQueue的队头
-        			pq.remove();
-        			pq.add(c[i]);
-        		}
-        	}
+        for(int i = 0; i < c.length; i ++){
+            if(pq.size() < 3){
+                pq.add(c[i]);
+            }else{
+                if(pq.peek().id > c[i].id){  // 最大值在堆顶，最大值在PriorityQueue的队头
+                    pq.remove();
+                    pq.add(c[i]);
+                }
+            }
         }
         */
         for(Customer cus : pq){
         	System.out.println(cus.id); 
         }
-        // 4 1 2
         // 9 13 10
+        // 4 1 2
     }
 }
 
