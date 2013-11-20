@@ -34,3 +34,23 @@ public class Solution {
         return Math.min(findMin(node.left), findMin(node.right)) + 1;
     }
 }
+
+/*
+    Maximum Depth of Binary Tree 
+*/
+public class Solution {
+    public int maxDepth(TreeNode root) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        if(root == null)
+            return 0;
+        return findMax(root);
+    }
+    public int findMax(TreeNode root){
+        if(root == null)
+            return 0;
+        if(root.left == null && root.right == null)
+            return 1;
+        return Math.max(findMax(root.left), findMax(root.right)) + 1;
+    }
+}
