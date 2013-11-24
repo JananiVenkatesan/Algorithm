@@ -35,3 +35,10 @@ public static String insertCharAt(String word, char ch, int index){
 	String second = word.substring(index);
 	return first + ch + second;
 }
+
+
+
+
+
+
+

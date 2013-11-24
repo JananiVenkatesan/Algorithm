@@ -38,18 +38,21 @@ unnecessary.
 */
 
 public static int countWaysDP(int n, int[] map){
-	if(n < 0){
-		return 0;
-	}else if(n == 0){
-		return 1;
-	}else if(map[n] >= 0){
-		return map[n];
-	}else{
-		map[n] = countWaysDP(n - 1, map)
-					+ countWaysDP(n - 2, map)
-					+ countWaysDP(n - 3, map);
-		return map[n];
-	}
+    map[1] = 1;
+   	map[2] = 2;
+   	map[3] = 4;
+   	if(n < 0){
+   		return 0;
+   	}else if(n == 0){
+   		return 1;
+   	}else if(map[n] > 0){
+    	return map[n];
+   	}else{
+    	map[n] = countWaysDP(n - 1, map)
+    			+ countWaysDP(n - 2, map)
+    			+ countWaysDP(n - 3, map);
+    	return map[n];
+    }
 }
 
 
