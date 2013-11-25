@@ -1,5 +1,4 @@
 
-
 public class Solution {
     public int climbStairs(int n) {
         // IMPORTANT: Please reset any member data you declared, as
@@ -46,7 +45,6 @@ public class Solution {
         return ways[n - 1];
     }
 }  
-
 
 /*
 Solution:

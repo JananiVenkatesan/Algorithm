@@ -9,7 +9,7 @@ Solution:
 We cannot do better than this.
 */
 
-public static ArrayList<String> getPerms(String str){
+public ArrayList<String> getPerms(String str){
 	if(str == null){  // special case
 		return null;
 	}
@@ -18,7 +18,7 @@ public static ArrayList<String> getPerms(String str){
 		permutations.add("");
 		return permutations;
 	}
-	char first = str.char(0);  // get the first character
+	char first = str.charAt(0);  // get the 1st character
 	String remainder = str.substring(1);  // remove the 1st character
 	ArrayList<String> words = getPerms(remainder);
 	for(String word : words){
@@ -30,13 +30,25 @@ public static ArrayList<String> getPerms(String str){
 	return permutations;
 }
 
-public static String insertCharAt(String word, char ch, int index){
+public String insertCharAt(String word, char ch, int index){
 	String first = word.substring(0, index);
 	String second = word.substring(index);
 	return first + ch + second;
 }
 
+// --------
 
+public ArrayList<String> getPermutations(String str){
+	if(str == null)
+		return null;
+	ArrayList<String> permutations = new ArrayList<String>();
+	if(str.length() == 1){
+		permutations.add(str);
+		return permutations;
+	}
+
+
+}
 
 
 

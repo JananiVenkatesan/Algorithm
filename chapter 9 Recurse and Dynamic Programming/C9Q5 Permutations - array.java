@@ -5,13 +5,10 @@ Given a collection of numbers, return all possible permutations.
 For example,
 [1,2,3] have the following permutations:
 [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
-
 */
 
 public class Solution {
-    public ArrayList<ArrayList<Integer>> permute(int[] num) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
+    public ArrayList<ArrayList<Integer>> getPermutations(int[] num) {
         ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
         if(num.length < 1){
             return results;
@@ -30,7 +27,7 @@ public class Solution {
             for(int j = i + 1; j < num.length; j ++){
                 subset[j - 1] = num[j];
             }
-            for(ArrayList<Integer> perm : permute(subset)){
+            for(ArrayList<Integer> perm : getPermutations(subset)){
                 perm.add(num[i]);
                 results.add(perm);
             }
