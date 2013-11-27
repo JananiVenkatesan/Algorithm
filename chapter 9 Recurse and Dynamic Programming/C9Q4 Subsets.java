@@ -55,11 +55,7 @@ public class AllSubsets{
 	}
 }
 
-/*
-	Solution #2:  Combinatorics
-*/
-
-
+//	Solution #2:  Combinatorics
 import java.util.*;
 
 class Solution{
@@ -97,10 +93,77 @@ public class Leetcode{
     }
 }
 
+/*
+Follow up:
+	Elements in a subset must be in non-descending order.
 
+E.g.	
+	If S = [1,2,3], a solution is:
+	[
+	  [3],
+	  [1],
+	  [2],
+	  [1,2,3],
+	  [1,3],
+	  [2,3],
+	  [1,2],
+	  []
+	]
+*/
+public class Solution {
+    public ArrayList<ArrayList<Integer>> subsets(int[] S) {
+        if(S == null)
+            return null;
+        return subsets(S, S.length - 1);
+    }
+    
+    public ArrayList<ArrayList<Integer>> subsets(int[] S, int index){
+        ArrayList<ArrayList<Integer>> allSubsets;
+        if(-1 == index){
+            allSubsets = new ArrayList<ArrayList<Integer>>();
+            allSubsets.add(new ArrayList<Integer>());
+        }
+        else{
+            allSubsets = subsets(S, index - 1);
+            int i = S[index];
+            ArrayList<ArrayList<Integer>> moreSubsets = new ArrayList<ArrayList<Integer>>();
+            for(ArrayList<Integer> subset : allSubsets){
+                ArrayList<Integer> newSubset = new ArrayList<Integer>();
+                newSubset.addAll(subset);
+                newSubset.add(0,i);
+                Collections.sort(newSubset);
+                moreSubsets.add(newSubset);
+            }
+            allSubsets.addAll(moreSubsets);
+        }
+        return allSubsets;
+    }
+}
 
-
-
+// Combinatorics
+public class Solution {
+    public ArrayList<ArrayList<Integer>> subsets(int[] S) {
+        if(S == null)
+            return null;
+        ArrayList<ArrayList<Integer>> allSubsets = new ArrayList<ArrayList<Integer>>();
+        int size = 1 << S.length;
+        for(int i = 0; i < size; i ++){
+            ArrayList<Integer> subset= convertToSet(S, i);
+            allSubsets.add(subset);
+        }
+        return allSubsets;
+    }
+    
+    public ArrayList<Integer> convertToSet(int[] S, int x){
+        ArrayList<Integer> subset = new ArrayList<Integer>();
+        for(int i = x, index = 0; i > 0; i >>= 1, index ++){
+            if((i & 1) == 1)
+                subset.add(S[index]);
+        }
+        Collections.sort(subset);
+        return subset;
+    }
+}
 
 
 
