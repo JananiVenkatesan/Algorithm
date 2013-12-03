@@ -1,8 +1,6 @@
 
 public class Solution {
     public int climbStairs(int n) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(n <= 0){
             return 0;
         }
@@ -26,8 +24,6 @@ Solution:
 */
 public class Solution {
     public int climbStairs(int n) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(n <= 0){
             return 0;
         }
@@ -50,11 +46,8 @@ public class Solution {
 Solution:
     Recursive
 */
-
 public class Solution {
     public int climbStairs(int n) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(n < 0){
             return 0;
         }

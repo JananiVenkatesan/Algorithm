@@ -6,7 +6,10 @@ robot from the top left to the bottom right.
 */
 
 // Recurse
-public static ArrayList<Pos> path = new ArrayList<Pos>();
+public ArrayList<Pos> getPath(int x, int y){
+	ArrayList<Pos> path = new ArrayList<Pos>();
+	return getPath(x, y, path);
+}
 
 public boolean getPath(int x, int y, ArrayList<Pos> path){
 	Pos p = new Pos(x, y);
@@ -28,11 +31,14 @@ public boolean getPath(int x, int y, ArrayList<Pos> path){
 }
 
 // Dynamic Programming
-public static ArrayList<Pos> path = new ArrayList<Pos>;
-public static HashMap<Pos, Boolean> hm = new HashMap<Pos, Boolean>();
+public ArrayList<Pos> getPath(int x, int y){
+	ArrayList<Pos> path = new ArrayList<Pos>();
+	HashMap<Pos, Boolean> hm = new HashMap<Pos, Boolean>();
+	return getPath(x, y, path, hm);
+}
 
 public boolean getPath(int x, int y, 
-		ArrayList<Pos> path, HashMap<Pos, Boolean> hm){
+			ArrayList<Pos> path, HashMap<Pos, Boolean> hm){
 	Pos p = new Pos(x, y);
 	if(hm.containsKey(p)){  // Already visited this cell
 		return hm.get(p);
@@ -61,11 +67,13 @@ public boolean getPath(int x, int y,
 		Pos move(Pos p, int dir)
 */
 // Recurse
-public static ArrayList<Pos> path = new ArrayList<Pos>();
-
-public boolean getPath(Pos p, path){
+public ArrayList<Pos> getPath(Pos p){
+	ArrayList<Pos> path = new ArrayList<Pos>();
+	return getPath(p, path);
+}
+public boolean getPath(Pos p, ArrayList<Pos> path){
+	path.add(p);
 	if(isEnd(p)){
-		path.add(p);
 		return true;
 	}
 	boolean feasible = false;
@@ -81,8 +89,11 @@ public boolean getPath(Pos p, path){
 }
 
 // Dynamic Programming
-public static ArrayList<Pos> path = new ArrayList<Pos>();
-public static HashMap<Pos, Boolean> hm = new HashMap<Pos, Boolean>();
+public ArrayList<Pos> getPath(Pos p){
+	ArrayList<Pos> path = new ArrayList<Pos>();
+	HashMap<Pos, Boolean> hm = new HashMap<Pos, Boolean>();
+	return getPath(p, path, hm);
+}
 
 public boolean getPath(Pos p, ArrayList<Pos> path, HashMap<Pos, Boolean> hm){
 	if(isEnd(p)){

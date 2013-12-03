@@ -13,10 +13,6 @@ in time.
         
     The DP formular becomes 
     sum[i][j] = grid[i][j] + min( sum[i-1][j], sum[i][j-1] )
-        
-    Furthermore, noticing that we only need the neighbor to the 
-    left and the one above the current one. We can use just two rows 
-    and switch back and forth.
 
 */
 
@@ -60,7 +56,7 @@ public class Solution {
         if(count[row][col] != 0){
             return count[row][col];
         }
-        int sum = 0, sum2 = 0;
+        int sum1 = 0, sum2 = 0;
         boolean flag1 = false, flag2 = false;
         if(row < grid.length - 1 && col < grid[0].length){
             sum1 = minPathSum(grid, row + 1, col, count);

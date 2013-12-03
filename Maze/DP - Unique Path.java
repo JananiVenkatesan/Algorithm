@@ -3,7 +3,7 @@
 
     The robot can only move either down or right at any point 
 in time. The robot is trying to reach the bottom-right corner 
-of the grid (marked 'Finish' in the diagram below).
+of the grid.
 
     How many possible unique paths are there?
 */
@@ -39,7 +39,8 @@ public class Solution {
 /*
 Follow up:
 
-Now consider if some obstacles are added to the grids. How many unique paths would there be?
+Now consider if some obstacles are added to the grids. How many unique paths 
+would there be?
 
 An obstacle and empty space is marked as 1 and 0 respectively in the grid.
 
@@ -57,6 +58,7 @@ public class Solution {
     public int uniquePathsWithObstacles(int[][] grid) {
         if(grid == null)
             return 0;
+        // If start or end point has obstacle
         if(grid[0][0] == 1 || grid[grid.length - 1][grid[0].length - 1] == 1)
             return 0;
         int[][] count = new int[grid.length][grid[0].length];
