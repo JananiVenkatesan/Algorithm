@@ -51,12 +51,12 @@ while(it.hasNext()){
 
 Map<Integer, String> map = new HashMap<Integer,String>();
 Set<Integer> keySet = map.keySet();
-    Iterator<Integer> it = keySet.iterator();
+Iterator<Integer> it = keySet.iterator();
 
-    while(it.hasNext()){
-        Integer key = it.next();
-        String value = map.get(key);
-    }
+while(it.hasNext()){
+    Integer key = it.next();
+    String value = map.get(key);
 }
+
 
 
