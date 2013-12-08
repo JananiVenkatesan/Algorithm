@@ -1,0 +1,3 @@
+Cache algorithms
+
+http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used
