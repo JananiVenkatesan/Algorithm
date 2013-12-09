@@ -1,11 +1,12 @@
+import java.util.*;
 
-public class MyIterable<T> implements Iterable<T>{
+class MyArray<T> implements Iterable<T>{
 	T[] elems;
-	int nElems;
+	int length = 0;
 
-	public MyIterator(T[] data){
+	public MyArray(T[] data){
 		elems = data;
-		nElems = data.length;
+		length = data.length;
 	}
 
 	public Iterator<T> iterator(){
@@ -13,35 +14,41 @@ public class MyIterable<T> implements Iterable<T>{
 	}
 
 	private class MyIterator<T> implements Iterator<T>{
-		int nextElem = 0;
-		boolean hasRemoved = true;
+		int next = 0;
 
 		public boolean hasNext(){
-			return nextElem > nElems;
+			return next < length;
 		}
 
 		public T next(){
 			if(!hasNext()){
-				throw new NoSuchElementException("No more elements");
+				throw new NoSuchElementException();
 			}
-
-			T t = elems[nextElem];
-			nextElem ++;
-			hasRemoved = false;
-			return e;
+			T t = (T)elems[next];
+			next ++;
+			return t;
 		}
 
-		public void remove(){
-			if(hasRemoved){
-				throw new IllegalStateException(  
-           			"The remove method can only be called once and after the next method.");  
-			}
+		public void remove(){}
+	}
+}
 
-			if(nextElem < nElems - 1){
-				System.arraycopy(elems, nextElem + 1, elems, nextElem, nElems - next - 1);
+public class Test  {
+  public static void main(String[] args) {
+        Integer[] i = new Integer[10];
+		for(int j = 0; j < i.length; j ++)
+			i[j] = 10 - j;
+
+		try{
+			MyArray<Integer> mi = new MyArray<Integer>(i);
+			
+			// Check 1
+			for(Integer it : mi){
+				System.out.println(it);
 			}
-			nElems --;
-			hasRemoved = true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 }
