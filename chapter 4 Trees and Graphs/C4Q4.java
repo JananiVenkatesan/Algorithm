@@ -24,7 +24,7 @@ public void createLevelLinkedList(TreeNode root, ArrayList<LinkedList<TreeNode>>
 		return;
 
 	LinkedList<TreeNode> list = null;
-	if(ArrayList.size() == level){  // ArrayList does not contain this level
+	if(LinkedList.size() == level){  // ArrayList does not contain this level
 		list = new LinkedList<TreeNode>();
 	}else{
 		list = lists.get(level);
