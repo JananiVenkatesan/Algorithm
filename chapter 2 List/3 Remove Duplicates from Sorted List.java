@@ -8,23 +8,10 @@ element appear only once.
 	Given 1->1->2, return 1->2.
 	Given 1->1->2->3->3, return 1->2->3.
 
-
-
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
  */
 
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(head == null)
             return null;
         
@@ -41,28 +28,14 @@ public class Solution {
     }
 }
 
-
 /*
 Remove Duplicates from Sorted List II
-
 
 	Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
 
 	For example,
 	Given 1->2->3->3->4->4->5, return 1->2->5.
 	Given 1->1->1->2->3, return 2->3.
-
-
-
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
  */
 
 public class Solution {
@@ -90,3 +63,6 @@ public class Solution {
         return newHead.next;
     }
 }
+
+
+

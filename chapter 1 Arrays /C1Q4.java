@@ -23,32 +23,30 @@ Solution:
     no space, then we copy the original character.
 */
 
-	public String replacesSpaces(char[] charArray, int length){
-		if(charArray == null)
-			return null;
-		
-		int countSpaces = 0;
-		int newLength;
-
-		for(int i=0; i<length; i++)
-			if(charArray[i]==' ')
-				countSpaces++;
-
-		newLength = length + countSpaces*2;  // calculate the new length of the whole array
-
-		charArray[newLength]='\0';  // mark the end of the new array 
-
-		for(int i=length-1; i>=0; i--){
-			if(charArray[i]==' '){  // replace space with '%20' element by element
-				charArray[newLength-1] = '0';
-				charArray[newLength-2] = '2';
-				charArray[newLength-3] = '%';
-				newLength = newLength-3;
-			}else{
-				charArray[newLength-1] = charArray[i];
-				newLength--;
-			}
-		}
-
-		return new String(charArray);
+public String replaceSpace(char[] array, int length){
+	if(array == null || length < 0)
+		return null;
+	
+	int count = 0;
+	for(int i = 0; i < length; i ++){
+		if(array[i] == ' ')
+			count ++;
 	}
+
+	int newLength = length + 2 * count;
+	array[newLength] = '\0';
+	int cur = newLength - 1;
+	for(int i = length - 1; i >= 0; i --){
+		if(array[i] != ' '){
+			array[cur] = array[i];
+			cur --;
+		}
+		else{
+			array[cur] = '0';
+			array[cur - 1] = '2';
+			array[cur - 2] = '%';
+			cur = cur - 3;
+		}
+	}
+	return new String(array);
+}

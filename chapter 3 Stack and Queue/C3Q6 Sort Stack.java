@@ -12,8 +12,8 @@ Solution:
     page 215
 */
 
-// This algorithm is O(N2) time and O(N) space.
-Stack<Integer> sort(Stack<Integer> s){
+// This algorithm is O(N^2) time and O(N) space.
+public Stack<Integer> sort(Stack<Integer> s){
 	Stack<Integer> r = new Stack<Integer>();
 	while(!s.isEmpty()){
 		int temp = s.pop();  // Step 1

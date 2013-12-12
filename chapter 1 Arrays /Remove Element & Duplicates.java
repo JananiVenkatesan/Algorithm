@@ -1,16 +1,6 @@
 /*
-
-Problem:
-	Given an array and a value, remove all instances of that 
-value in place and return the new length.
-
-
-Solution:
-	The order of elements can be changed. It doesn't matter 
-what you leave beyond the new length.
-
+Remove Element
 */
-
 
 public class Solution{
 	public int removeElement(int[] A, int elem){
@@ -30,18 +20,7 @@ public class Solution{
 }
 
 /*
-
-Problem:
-	Given a sorted array, remove the duplicates in place such 
-that each element appear only once and return the new length.
-
-	Do not allocate extra space for another array, you must do this in place with constant memory.
-
-	For example,
-		Given input array A = [1,1,2],
-
-	Your function should return length = 2, and A is now [1,2].
-
+Remove Duplicates from Sorted Array
 */
 
 public class Solution {
@@ -81,6 +60,7 @@ public class Solution {
             return -1;
         int count = 0;
         for(int i = 2; i < A.length; i ++){
+            // IMPORTANT! 判断与最开头的两个相同数是否一样
             if(A[i]  == A[i - count - 1] && A[i] == A[i - count - 2]){
                 count ++;
             }else{

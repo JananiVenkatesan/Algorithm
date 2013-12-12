@@ -1,18 +1,39 @@
 /*
 Problem:
-
 	Implement a function to check if a binary tree is a binary 
 search tree.
+*/
 
+/*
+Solution #2: The Min / Max Solution
+	page 227
+*/
+
+public class Solution {
+    public boolean isValidBST(TreeNode root) {
+        if(root == null)
+            return true;
+        return isValidBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    
+    public boolean isValidBST(TreeNode root, int min, int max){
+        if(root == null)
+            return true;
+        if(root.val >= max || root.val <= min)
+            return false;
+        if(!isValidBST(root.left, min, root.val) || !isValidBST(root.right, root.val, max))
+            return false;
+        return true;
+    }
+}
+
+
+/*
 Solution #1:
 	We can implement this solution in two different ways. 
 
 	The first leverages the in-order traversal,and the second builds off the
 property that left <= current < right.
-
-
-
-Solution #1: 
 
 	In-Order Traversal
 
@@ -48,28 +69,6 @@ boolean isBST(TreeNode node){
 		return false;
 
 	return true
-}
-
-/*
-
-Solution #2: The Min / Max Solution
-
-	page 227
-
-*/
-
-public boolean isBST(TreeNode node){
-	return isBST(node, Integer.MIN_VALUE, Integer.MAX_VALUE);
-}
-
-public boolean isBST(TreeNode node, int min, int max){
-	if(node == null)
-		return true;
-	if(node.val < min || node.val > max)
-		return false;
-	if(!isBST(node.left, min, node.val) || !isBST(node.right, node.val, max))
-		return false;
-	return true;
 }
 
 

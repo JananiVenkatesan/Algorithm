@@ -15,6 +15,26 @@ path could represent a number.
 
     Return the sum = 12 + 13 = 25.
 */
+    
+public class Solution {
+    public int sumNumbers(TreeNode root) {
+        if(root == null)
+            return 0;
+        return sumNumbers(root, 0, 0);
+    }
+    
+    public int sumNumbers(TreeNode root, int sum, int pathSum){
+        if(root.left == null && root.right == null){
+            return sum + pathSum * 10 + root.val;
+        }
+        if(root.left != null)
+            sum = sumNumbers(root.left, sum, pathSum * 10 + root.val);
+        if(root.right != null)
+            sum = sumNumbers(root.right, sum, pathSum * 10 + root.val);
+        return sum;
+    }
+}
+
 
 public class Solution {
     public int sumNumbers(TreeNode root) {

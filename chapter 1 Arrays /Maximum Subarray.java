@@ -1,5 +1,4 @@
 /*
-
 Problem:
     Find the contiguous subarray within an array (containing at 
 least one number) which has the largest sum. Return the sum.
@@ -9,7 +8,6 @@ least one number) which has the largest sum. Return the sum.
 
 
 Solution:
-
     This problem is easy.
 
     Keep tracking the sum of previous numbers. If it's getting lower 
@@ -21,17 +19,25 @@ be included in the largest-sum-subarray, so, reset the sum to 0.
 
 
 public class Solution {
-    public int maxSubArray(int[] A){
-        int maxSum = Integer.MIN_VALUE;
+    public int maxSubarray(int[] A){
+        int max = Integer.MIN_VALUE;
         if(A == null)
-            return maxSum;
+            return max;
+
         int sum = 0;
-        for(int n : A){
-            sum += n;
-            maxSum = Math.max(maxSum, sum);
+        for(int i : A){
+            sum += i;
+            max = Math.max(max, sum);
             if(sum < 0)
                 sum = 0;
         }
-        return maxSum;
+        return max;
     }
 }
+
+
+
+
+
+
+

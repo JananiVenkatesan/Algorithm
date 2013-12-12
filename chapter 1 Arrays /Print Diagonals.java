@@ -14,35 +14,43 @@ public class Test{
 
 class Solution{
     public void printDiagonal(char[][] A){
-        if(A == null)
+        if(A == null){
             return;
-        printLineRight(A, 0, 0);
-        printLineDown(A, 1, 0);
+        }
+        printToRight(A, 0, 0);
+        if(A.length > 1){
+            printToBottom(A, 1, 0);
+        }
     }
 
-    public void printDiagonalRight(char[][] A, int row, int col){
-        if(!(row < A.length && col < A[0].length))
-            return;
+    public void printToRight(char[][] A, int row, int col){
+        if(isValid(A, row, col)){
+            printDiagonal(A, row, col);
+            printToRight(A, row, col + 1);
+        }
+    }
+    public void printToBottom(char[][] A, int row, int col){
+        if(isValid(A, row, col)){
+            printDiagonal(A, row, col);
+            printToBottom(A, row + 1, col);
+        }
+    }
+    public void printDiagonal(char[][] A, int row, int col){
         int i = row, j = col;
-        while(i < A.length && j < A[0].length){
+        while(isValid(A, i, j)){
             System.out.print(A[i][j]);
             i ++;
             j ++;
         }
         System.out.println();
-        printLineRight(A, row, col + 1);
     }
 
-    public void printDiagonalDown(char[][] A, int row, int col){
-        if(!(row < A.length && col < A[0].length))
-            return;
-        int i = row, j = col;
-        while(i < A.length && j < A[0].length){
-            System.out.print(A[i][j]);
-            i ++;
-            j ++;
+    public boolean isValid(char[][] A, int row, int col){
+        if(row >= 0 && row < A.length && col >= 0 && col < A[0].length){
+            return true;
         }
-        System.out.println();
-        printLineDown(A, row + 1, col);
+        else{
+            return false;
+        }
     }
 }

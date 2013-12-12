@@ -1,13 +1,10 @@
 /*
-
 Problem:
-
     Given two strings, write a method to decide if one is a 
 permutation of the other
 
 
 Solution:
-
     Like in many questions, we should confirm some details with our interviewer. 
 
     1. We should understand if the anagram comparison is case sensitive.
@@ -20,10 +17,7 @@ Solution:
     3. Whenever we compare two strings, we know that if they are different lengths then 
     they cannot be anagrams!!!!!!
 
-
     There are two easy ways to solve this problem, both of which use this optimization.
-
-
 
 Solution #1: Sort the strings.
 
@@ -31,7 +25,6 @@ Solution #1: Sort the strings.
 but in different orders. Therefore, sorting the strings will put the characters 
 from two anagrams in the same order. We just need to compare the sorted versions
 of the strings.
-
 */
 
     public boolean permutation(String s1, String s2){
@@ -51,8 +44,7 @@ of the strings.
     	Arrays.sort(charArray);
     	
     	/*
-        we cannot use  
-    	  return charArray.toString();  
+        we cannot use    return charArray.toString();  
 
     	since charArray is an array, charArray.toString() returns the memory address of charArray[0]
     	use .toString() method in this kind of case

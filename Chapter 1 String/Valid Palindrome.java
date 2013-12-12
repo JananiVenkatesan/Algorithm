@@ -22,7 +22,7 @@ public class Solution {
         // the same Solution instance will be reused for each test case.
         if(s == null)
             return false;
-        if(s == "")
+        if(s.equals(""))
             return true;
         s = s.toLowerCase();
         int i = 0, j = s.length() - 1;
@@ -34,7 +34,7 @@ public class Solution {
             if(isChar(s.charAt(j)) && isChar(s.charAt(i)) && s.charAt(i) != s.charAt(j)){
                 return false;
             }
-            i ++;
+            i ++;  // IMPORTANT! Don't forget to move cursors!
             j --;
         }
         return true;

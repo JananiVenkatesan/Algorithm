@@ -1,3 +1,8 @@
+/*
+    Implement strStr().
+
+    Returns the index that a substring first time appears in a string
+*/
 public class Solution {
     public String strStr(String haystack, String needle) {
         if(needle == null || haystack.length() < needle.length())
@@ -7,8 +12,7 @@ public class Solution {
             
         for(int i = 0; i < haystack.length() - needle.length() + 1; i ++){
             if(haystack.charAt(i) == needle.charAt(0)){
-                int index = isContained(haystack, needle, i);
-                if(index == 1){
+                if(contains(haystack, needle, i));
                     return haystack.substring(i);
                 }
             }
@@ -16,12 +20,12 @@ public class Solution {
         return null;
     }
     
-    public int isContained(String haystack, String needle, int i){
+    public boolean contains(String haystack, String needle, int i){
         for(int j = 0; j < needle.length(); j ++, i++){
             if(haystack.charAt(i) !=  needle.charAt(j)){
-                return - 1;
+                return false;
             }
         }
-        return 1;
+        return true;
     }
 }

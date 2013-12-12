@@ -63,10 +63,12 @@ public class Solution {
         String line = br.readLine();
         if(line == null)
             System.out.println(null);
+        
         String[] tokens = line.split(" ");
         boolean[] isInt = new boolean[tokens.length];
         LinkedList<Integer> int_list = new LinkedList<Integer>();
         LinkedList<String> string_list = new LinkedList<String>();
+        
         int i = 0;
         for (String token: tokens){
             try{
@@ -75,13 +77,14 @@ public class Solution {
                 isInt[i] = true;
             }catch (NumberFormatException e) {
                 string_list.add(token);
-                isInt[i] = false;
             }finally{
                 i++;
             }
         }
+
         Collections.sort(int_list);
         Collections.sort(string_list);
+        
         StringBuilder sb = new StringBuilder();
         for (i = 0; i < isInt.length; i++){
             if (isInt[i]){

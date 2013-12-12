@@ -2,48 +2,41 @@
 
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
  */
+
 public class Solution {
     public ListNode mergeKLists(ArrayList<ListNode> lists) {
-        ListNode head = new ListNode(0);
-        if(lists == null)
+        if(lists == null || lists.size() == 0)
             return null;
-        
-        for(int i = lists.size() - 1; i >= 0; i --){  // Eliminate all the Nulls in lists 
-            if(lists.get(i) == null){
+        for(int i = lists.size() - 1; i >= 0; i --){
+            if(lists.get(i) == null)
                 lists.remove(i);
-            }
         }
-        if(lists.size() == 0){
+        if(lists.size() == 0)
             return null;
-        }
-        
-        ListNode cur = head;
+            
+        ListNode newhead = new ListNode(0);
+        ListNode cur = newhead;
         while(lists.size() != 0){
             ListNode min = new ListNode(Integer.MAX_VALUE);
             int index = -1;
             for(int i = 0; i < lists.size(); i ++){
-                if(lists.get(i).val < min.val){
-                    min.val = lists.get(i).val;
+                if(min.val > lists.get(i).val){
+                    min = lists.get(i);
                     index = i;
                 }
             }
             cur.next = min;
             cur = cur.next;
-            if(lists.get(index).next == null)
+            if(lists.get(index).next == null){
                 lists.remove(index);
-            else
+            }
+            else{
                 lists.set(index, lists.get(index).next);
+            }
+            cur.next = null;
         }
-        return head.next;
+        return newhead.next;
     }
 }
+

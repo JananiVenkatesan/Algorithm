@@ -1,14 +1,10 @@
 /*
-
 Problem:
-
 	Write an algorithm to find the 'next' node (i.e., in-order 
 successor) of a given node in a binary search tree. You may 
 assume that each node has a link to its parent.
 
-
 Solution:
-
 	Recall that an in-order traversal traverses the left subtree, 
 then the current node, then the right subtree. To approach this 
 problem, we need to think very, very carefully about what happens.
@@ -18,20 +14,23 @@ problem, we need to think very, very carefully about what happens.
 public Node inorderSuccessor(Node node){
 	if(node == null)
 		return null;
-	if(node.right != null)  /* Found right children -> return leftmost node of right subtree. */
-		getLeftMostNode(node.right);
+	if(node.right != null)
+		return getMostLeft(node.right);
 	return getParentNode(node);
 }
-public Node findMostLeft(Node node){
+
+private Node getMostLeft(Node node){
 	if(node == null)
 		return null;
-	while(node.lChild != null)
-		node = node.lChild;
+	while(node.left != null){
+		node = node.left;
+	}
 	return node;
 }
-public Node getParentNode(Node node){
+
+private Node getParentNode(Node node){
 	Node p = node.parent;
-	while(p != null &&　p.left != node){  // Don't forget  p != null
+	while(p != null && p.left != node){
 		node = p;
 		p = p.parent;
 	}
@@ -39,13 +38,9 @@ public Node getParentNode(Node node){
 }
 
 /*
-
 Follow up
-
 	case of preorder
-
 */
-
 
 public TreeNode preOrderNext(TreeNode node){
 	if(node == null){
@@ -57,21 +52,21 @@ public TreeNode preOrderNext(TreeNode node){
 	}else if(node.rChild != null){
 		return node.rChild;
 	}else{
-		return findParentWithRChild();
+		return findParentWithRChild(node);
 	}
 }
 
-public TreeNode findParentWithRChild(){	
-	TreeNode q = node;
-	TreeNode p = q.parent;
-	while(p != null && (p.rChild == null || p.rChild == q ){
-		q = p;
+public TreeNode findParentWithRChild(TreeNode node){	
+	TreeNode p = node.parent;
+	while(p != null && (p.rChild == null || p.rChild == q)){
+		node = p;
 		p = p.parent;
 	}
 	if(p.rChild.rChild == null)
 		return node;
 	return p.rChild;
 }
+
 /*
 case 1
 		 /

@@ -1,19 +1,8 @@
 /*
-
 Sort a linked list using insertion sort.
+*/
 
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-
-class Solution {
+public class Solution {
     public ListNode insertionSortList(ListNode head) {
         if(head == null)
             return null;
@@ -23,37 +12,24 @@ class Solution {
         ListNode cur = head.next;
         head.next = null;
         
-        while(cur != null){  // Loop all the nodes
-            // Isolate the node
+        while(cur != null){
             ListNode temp = cur;
             cur = cur.next;
             temp.next = null;
             
-            // Find the insert position
-            ListNode pos = newhead.next, prev = newhead;
-            while(pos != null && pos.val < temp.val){  // IMPORTANT! ->  pos != null
-                pos = pos.next;
+            ListNode current = newhead.next, prev = newhead;
+            while(current != null && temp.val > current.val){  // IMPORTANT!  current != null 要放在前面！否则会有空指针异常
+                current = current.next;
                 prev = prev.next;
             }
-
-            // If the insert position is at the end
-            if(pos == null){
-                // System.out.println("prev = "+ prev.val);
+            
+            if(current == null){
                 prev.next = temp;
             }
             else{
-                temp.next = pos;
+                temp.next = current;
                 prev.next = temp;
             }
-
-            /*
-            ListNode h = newhead.next;
-            while(h != null){
-                System.out.print(h.val);
-                h = h.next;
-            }
-            System.out.println();
-            */
         }
         return newhead.next;
     }

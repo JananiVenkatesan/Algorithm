@@ -1,76 +1,52 @@
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
+
+// Convert Sorted Array to Binary Search Tree
 public class Solution {
     public TreeNode sortedArrayToBST(int[] num) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
-        if(num == null)
+        if(num == null || num.length == 0)
             return null;
         return createBST(num, 0, num.length - 1);
     }
     
-    public TreeNode createBST(int[] num, int start, int end){
-        if(start > end)
+    private TreeNode createBST(int[] num, int left, int right){
+        if(left > right)  // IMPORTANT!!!
             return null;
-        int mid = (start + end) / 2;
-        TreeNode t = new TreeNode(num[mid]);
-        t.left = createBST(num, start, mid - 1);
-        t.right = createBST(num, mid + 1, end);
-        return t;
+        int mid = left + (right - left) / 2;
+        TreeNode root = new TreeNode(num[mid]);
+        root.left = createBST(num, left, mid - 1);
+        root.right = createBST(num, mid + 1, right);
+        return root;
     }
 }
 
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; next = null; }
- * }
- */
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 
+// Convert Sorted List to Binary Search Tree
 public class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(head == null)
             return null;
+        
         int length = 1;
-        ListNode end = head;
-        while(end.next != null){
-            end = end.next;
+        ListNode n = head;
+        while(n.next != null){
+            n = n.next;
             length ++;
         }
-        return toBST(head, 0, length - 1);
+        
+        return createBST(head, 0, length - 1);
     }
-    public TreeNode toBST(ListNode node, int start, int end){
-        if(start > end)
+    
+    private TreeNode createBST(ListNode node, int left, int right){
+        if(left > right)
             return null;
-        int mid = start + (end - start) / 2;
+        int mid = left + (right - left) / 2;
         ListNode n = node;
-        for(int i = start; i < mid; i ++){
+        for(int i = left; i < mid; i ++){  // IMPORTANT!!! start from LEFT!!!
             n = n.next;
         }
         
-        TreeNode midNode = new TreeNode(n.val);
-        midNode.left = toBST(node, start, mid - 1);
-        midNode.right = toBST(n.next, mid + 1, end);
-        return midNode;
+        TreeNode root = new TreeNode(n.val);
+        root.left = createBST(node, left, mid - 1);
+        root.right = createBST(n.next, mid + 1, right);
+        return root;
     }
 }

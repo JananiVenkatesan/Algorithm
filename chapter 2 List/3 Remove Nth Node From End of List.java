@@ -1,5 +1,4 @@
 /*
-
 	Given a linked list, remove the nth node from the end of 
 list and return its head.
 
@@ -9,17 +8,8 @@ list and return its head.
     After removing the second node from the end, the linked 
 list becomes 1->2->3->5.
 
-
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
  */
+
 public class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         // IMPORTANT: Please reset any member data you declared, as

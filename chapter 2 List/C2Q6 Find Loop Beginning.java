@@ -1,14 +1,10 @@
 /*
-
 Problem:
-
     Given a circular linked list, implement an algorithm which returns the 
 node at the beginning of the loop.
 
 
-
 Solution:
-
     This is a modification of a classic interview problem: detect if a linked 
 list has a loop. Let's apply the Pattern Matching approach.
 
@@ -29,29 +25,23 @@ list, then they will meet at the front of the loop.
 2. Move FastPointer at a rate of 2 steps and SlowPointer at a rate of 1step.
 3. When they collide, move SlowPointer to LinkedListHead.Keep FastPointerwhere it is.
 4. Move SlowPointer and FastPointer at a rate of one step. Return the new collision point.
-
 */
 
-public LinkedListNode FindLoopBeginning(LinkedListNode head){
-	LinkedListNode slow = head, fast = head;
-	//  Find meeting point. This will be LOOP_SIZE - k steps into the linked list
+public ListNode findBeginning(ListNode head){
+	ListNode slow = head, fast = head;
+
 	while(slow != fast){
 		slow = slow.next;
 		fast = fast.next.next;
 	}
-	/* 
-	    Move slow to Head. Keep fast at Meeting Point. Each are k steps from the Loop Start. 
-	    If they move at the same pace, they must meet at Loop Start
-	*/
+
 	fast = head;
 	while(slow != fast){
 		slow = slow.next;
 		fast = fast.next;
 	}
-
 	return slow;
 }
-
 
 
 

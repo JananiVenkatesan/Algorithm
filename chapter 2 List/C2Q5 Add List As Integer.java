@@ -1,15 +1,11 @@
 /*
 Problem:
-
     You have two numbers represented by a linked list, where each node 
 contains a single digit. The digits are stored in reverse order, such that 
 the 1's digit (largest digit) is at the head of the list. Write a function 
 that adds the two numbers and returns the sum as a linked list.
 
-	
-
 Solution:
-
    It's useful to remember in this problem how exactly addition works. 
    
    Imagine the problem:
@@ -41,45 +37,42 @@ the second element of our linkedlist,and we carry the 1 to the next sum.
 3. Finally, we add 6, 2 and our "carry," to get 9. This become the final element of 
 our linked list.
    List: 2->1->9.
-
 */
+public ListNode addLists(ListNode n1, ListNode n2){
+	return addLists(n1, n2, 0);
+}
 
-
-public LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2, int carryon){
-	/* We're done if both lists are null and the carry value is 0 */
-	if(l1 == null && l2 == null && carryon == 0)
+public ListNode addLists(ListNode n1, ListNode n2, int carry){
+	if(n1 == null && n2 == null && carry == 0)
 		return null;
 
-	LinkedListNode result = new LinkedListNode(carryon);
-	// Add value, and the data from 11 and 12
-	int value = carryon;
-	if(l1 != null){
-		value += l1.data;
-	}
-	if(l2 != null){
-		value += l2.data;
-	}
-	// Second digit of numbe
-	result.data = value % 10;
-	// Recurse
-	if(l1 != null || l2 != null){
-		LinkedListNode more = addLists(l1 == null ? null : l1.next,
-									   l2 == null ? null : l2.next,
-									   value >= 10 ? 1 : 0);
-		result.next = more;	
+	ListNode result = new ListNode(carry);
+	int value = carry;
+	if(n1 != null)
+		value += n1.val;
+	if(n2 != null)
+		value += n2.val;
+
+	result.val = value % 10;
+	if(value >= 10)
+		carry = 1;
+	else
+		carry = 0;
+
+	if(n1 != null || n2 != null){
+		ListNode more = addList(n1 == null ? null : n1.next,
+							    n2 == null ? null : n2.next,
+							    carry);
+		result.next = more; 
 	}
 	return result;
 }
 
 
 /*
-
 FOLLOW UP
-
 	Suppose the digits are stored in forward order. Repeat the above 
 problem.
-
-
 
 Solution:
    Part B is conceptually the same (recurse, carry the excess), but has 

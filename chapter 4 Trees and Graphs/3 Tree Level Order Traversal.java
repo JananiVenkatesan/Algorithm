@@ -18,14 +18,6 @@ return its level order traversal as:
 ]
 
 
-*
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
  */
 public class Solution {
     public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {

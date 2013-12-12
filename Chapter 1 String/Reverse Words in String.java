@@ -6,11 +6,17 @@ public class Test{
         String str = "I have 36 books, 40 pens2, and 1 notebook.";
         Solution s = new Solution();
         System.out.println(s.stringReverse(str));
+        // "I evah 36 skoob, 40 2snep, dna 1 .koobeton"
     }
 }
 
 class Solution{
     public String stringReverse(String s){
+        if(s == null)
+            return null;
+        if(s.length() <= 1)
+            return s;
+        
         StringBuilder sb = new StringBuilder();
         int cur = 0;
         for(int index = 0; index < s.length(); index ++){

@@ -1,22 +1,37 @@
 /*
-
 Problem:
-
     Implement an algorithm to find the kth to last element of a 
 singly linked list.
 
-
 Solution:
-
     Assume that the length of the LinkedList is unknown.
-
-
-
-Approach 1: Don't Return the Element - Recursion
-
 */
 
-public int nthToLast(LinkedListNode head, int k){
+
+// Approach 3: Iterative  !!!!!
+public ListNode nthToLast(ListNode n, int k){
+	if(n == null || k < 0){
+		return null;
+	}
+
+	ListNode fast = n;
+	for(int i = 0; i < k; i ++){
+		fast = fast.next;
+		if(fast == null)
+			return null;
+	}
+
+	ListNode slow = n;
+	while(fast.next != null){
+		fast = fast.next;
+		slow = slow.next;
+	}
+	return slow;
+}
+
+
+// Approach 1: Don't Return the Element - Recursion
+public int nthToLast(ListNode head, int k){
 	if(head == null)
 		return 0;
 	int i = nthToLast(head.next, k) + 1;
@@ -26,55 +41,24 @@ public int nthToLast(LinkedListNode head, int k){
 }
 
 /*
-
 Approach 2: Create a Wrapper Class
  	because we couldn't simultaneously return a counter and an index
-
 */
 
 class IntWrapper{
 	public int value = 0;
 }
 
-LinkedListNode nthToLast(LinkedListNode head, int k, IntWrapper i){
+public ListNode nthToLast(ListNode head, int k, IntWrapper i){
 	if(head == null)
 		return null;
-	LinkedListNode node = nthToLast(head.next, k, i);
+	ListNode node = nthToLast(head.next, k, i);
 	i.value = i.value + 1;
 	if(i.value == k)
 		return head;
 	return node;
 }
 
-/*
-
-Approach 3: Iterative  !!!!!
-
-*/
-
-LinkedListNode nthToLast(LinkedListNode head, int k){
-	if(k <= 0)
-		return null;
-
-	LinkedListNode p1 = head, p2 = head;
-
-	// Move p2 -forward k nodes into the list
-	for(int i = 0; i < k - 1 ; i++){
-		if(p2 == null)
-			return null;
-		p2 = p2.next;
-	}
-	if(p2 == null)
-		return null;
-
-	/* Now, move p1 and p2 at the same speed. When p2 hits the end, 
-	p1 will be at the right element. */
-	while(p2.next != null){
-		p1 = p1.next;
-		p2 = p2.next;
-	}
-	return p1;
-}
 
 
 

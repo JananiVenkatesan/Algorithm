@@ -17,15 +17,9 @@ public class MyQueue<T>{  // use generics  泛型
 		return newer.size() + older.size();
 	}
 	public void add(T t){
-		/*  Push onto stackNewest, which always has the newest 
-		elements on top
-		*/
 		newer.push(t);
 	}
-	/* 
-	    Move elements from stackNewest into stackOldest. This is
-    usually done so that we can do operations on stackOldest.
-	*/
+
 	private void shiftStacks(){
 		if(older.isEmpty()){
 			while(!newer.isEmpty()){
@@ -34,11 +28,11 @@ public class MyQueue<T>{  // use generics  泛型
 		}
 	}
 	public T peek(){
-		shiftStacks();  // Ensure stackOld has the current elements
+		shiftStacks();  	  // Ensure stackOld has the current elements
 		return older.peek();  // retrieve the oldest item
 	}
 	public T remove(){
-		shiftStacks();  // Ensure stackOldest hasthe current elements
+		shiftStacks();  	  // Ensure stackOldest hasthe current elements
 		return older.pop();   // pop the oldest item.
 	}
 }

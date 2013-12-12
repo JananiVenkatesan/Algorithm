@@ -1,12 +1,10 @@
 public class Solution {
     public boolean isValid(String s) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(s == null){
             return false;
         }
+
         Stack<Character> stack = new Stack<Character>();
-        // Loop the characters
         for(int i = 0; i < s.length(); i ++){
             char c = s.charAt(i);
             if(c == '(' || c == '[' || c == '{'){

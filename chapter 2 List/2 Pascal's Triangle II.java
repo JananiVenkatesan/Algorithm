@@ -10,8 +10,6 @@ Return [1,3,3,1]
 
 public class Solution {
     public ArrayList<Integer> getRow(int rowIndex) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(rowIndex < 0)
             return null;
             

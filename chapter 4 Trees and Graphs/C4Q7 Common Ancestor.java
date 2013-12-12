@@ -1,21 +1,35 @@
 /*
-
 Problem:
-
 	Design an algorithm and write code to find the first common 
 ancestor of two nodes in a binary tree. Avoid storing additional 
 nodes in a data structure.  
 
 	NOTE: This is not necessarily a binary search tree.
-
-
-Solution 1:
-
-	page 231
-
-	loop tranverse
-
 */
+
+public TreeNode findLCA(TreeNode root, TreeNode p, TreeNode q){
+	if(root == null)
+		return null;
+	if(root == p || root == q)
+		return root;
+	TreeNode left = findLCA(root.left, p, q);
+	TreeNode rigth = findLCA(root.right, p, q);
+	if(left != null && right != null){
+		return root;
+	}else{
+		return left != null ? left : right;
+	}
+}
+
+
+
+
+/*
+Solution 1:
+	page 231
+	loop tranverse
+*/
+
 public Node commonAncestor(Node root, Node p, Node q) {
 	if (!covers(root, p) || !covers(root, q)) { // Error check 
 		return null;
@@ -50,9 +64,7 @@ public Node commonAncestorHelper(Node node, Node p, Node q){
 /*
 
 Solution 2:
-
 	page 232
-
 */
 
 public static class Result{
@@ -112,15 +124,6 @@ public Node commonAncestor(Node root, Node p, Node Q){
 		return r.node;
 	return null;
 }
-
-
-
-
-
-
-
-
-
 
 
 
