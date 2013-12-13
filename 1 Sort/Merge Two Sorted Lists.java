@@ -11,8 +11,6 @@
  */
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(l1 == null && l2 == null)
             return null;
         if(l1 == null)

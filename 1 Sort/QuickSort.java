@@ -13,7 +13,6 @@ public void quicksort(int[] arr, int left, int right){
 public int partition(int[] arr, int left, int right){
   int pivot = arr[left];
   while(left < right){
-      // find a arr[right] < pivot
       while(left < right && arr[right] >= pivot){
           right--;
       }
@@ -29,7 +28,7 @@ public int partition(int[] arr, int left, int right){
           right--;
       }
   }
-  // at this time, left = right
+  
   arr[left] = pivot;
   return left;
 }

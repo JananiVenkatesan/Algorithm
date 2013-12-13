@@ -1,43 +1,51 @@
 import java.util.*;
 
-class InOrderTree implements InOrderIterator<Integer> {  
-    
-    Stack<TreeNode> stack = new Stack<TreeNode>();
-    TreeNode cur = null;
+class Tree implements Iterable<Integer>{
+    TreeNode root;
 
-    public InOrderTree(TreeNode root){
-        if(root != null){
-            cur = root;
+    InOrderTree(TreeNode t){
+        root = t;
+    }
+
+    public Iterator<Integer> iterator(){
+        return new MyIterator();
+    }
+
+    private class MyIterator implements InOrderIterator<Integer>{
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode cur = null;
+
+        public MyIterator(){
+            if(root != null){
+                cur = root;
+                while(cur != null){
+                    stack.push(cur);
+                    cur = cur.left;
+                }
+            }
+        }
+
+        public boolean hasNext(){
+            return stack.isEmpty();
+        }
+
+        public Integer next(){
+            if(!hasNext())
+                throw new NoSuchElementException();
+
+            cur = stack.pop();
+            TreeNode node = cur;
+            cur = cur.right；
             while(cur != null){
                 stack.push(cur);
                 cur = cur.left;
             }
-        }
-    }
-    
-
-    public boolean hasNext(){
-        return !stack.isEmpty();
-    }
-
-    public Integer next(){
-        if(!hasNext()){
-            throw new NoSuchElementException();
-        }
-        cur = stack.pop();
-        TreeNode node = cur;
-        cur = cur.right;
-        while(cur != null){
-            stack.push(cur);
-            cur = cur.left;
+            return (Integer)node.val;
         }
 
-        return (Integer)node.val;
+        public void remove(){}
     }
-
-    public void remove(){}
 }
-
 
 interface InOrderIterator<Integer> extends Iterator<Integer> { 
   public boolean hasNext();

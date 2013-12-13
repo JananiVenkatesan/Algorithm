@@ -80,6 +80,28 @@ public class Solution {
 // Postorder 1
 public class Solution {
     public ArrayList<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> lists = new ArrayList<Integer>();
+        if(root == null)
+            return lists;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        stack.push(node);
+        
+        while(!stack.isEmpty()){
+            node = stack.pop();
+            lists.add(0,node.val);
+            if(node.left != null)
+                stack.push(node.left);
+            if(node.right != null)
+                stack.push(node.right);
+        }
+        return lists;
+    }
+}
+
+// Postorder 2
+public class Solution {
+    public ArrayList<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         if(root == null)
             return list;
@@ -107,7 +129,7 @@ public class Solution {
     }
 }
 
-// Postorder 2
+// Postorder 3
 public class Solution {
     public ArrayList<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<Integer>();

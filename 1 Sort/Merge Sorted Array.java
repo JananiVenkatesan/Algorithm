@@ -1,5 +1,4 @@
 /*
-
     Given two sorted integer arrays A and B, merge B into A as 
     one sorted array.
 
@@ -12,8 +11,6 @@
 
 public class Solution {
     public void merge(int A[], int m, int B[], int n) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(B == null || n == 0){
             return;
         }

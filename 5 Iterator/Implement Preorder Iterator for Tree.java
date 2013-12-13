@@ -1,35 +1,43 @@
 import java.util.*;
 
-class PreOrderTree implements Iterator<Integer> {  
-    TreeNode cur = null;
-    Stack<TreeNode> stack = new Stack<TreeNode>();
+class Tree implements Iterable<Integer>{
+    TreeNode root = null;
 
-    public PreOrderTree(TreeNode node){
-        if(node != null){
-            cur = node;
+    public Tree(TreeNode t){
+        root = t;
+    }
+
+    public Iterator<Integer> iterator(){
+        return new MyIterator();
+    }
+
+    private class MyIterator implements PreOrderIterator<Integer>{
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode cur = null;
+
+        public MyIterator(){
+            cur = root;
             stack.push(cur);
         }
-    }
 
-    public boolean hasNext(){
-        return !stack.isEmpty();
-    }
-
-    public Integer next(){
-        if(!hasNext()){
-            throw new NoSuchElementException();
+        public boolean hasNext(){
+            return stack.isEmpty();
         }
-        TreeNode node = stack.pop();
-        if(node.right != null)
-            stack.push(node.right);
-        if(node.left != null)
-            stack.push(node.left);
-        return (Integer)node.val;
-    }
-    
-    public void remove(){}
-}
 
+        public Integer next(){
+            if(!hasNext())
+                throw new NoSuchElementException();
+            cur  = stack.pop();
+            if(cur.right != null)
+                stack.push(cur.right);
+            if(cur.left != null)
+                stack.push(cur.left);
+            return (Integer)cur.val;    
+        }
+
+        public void remove(){}
+    }
+}
 
 class TreeNode {
   int val;

@@ -15,7 +15,7 @@ public class Solution {
         Stack<Integer> stack = new Stack<Integer>();
         preorder(root, stack);
         root.right = null;  // IMPORTANT!
-        root.left = null;   // MORE IMPORTANT! To isolate root
+        root.left = null;   // MORE IMPORTANT! To isolate the root
         while(stack.size() > 1){
             TreeNode node = new TreeNode(stack.pop());
             node.right = root.right;
