@@ -13,33 +13,32 @@ algorithm iteratively.
 import java.util.*;
 
 class Solution{
-	public ArrayList<ArrayList<Character>> getSubsets(ArrayList<Character> set){
-		if(set == null)
-			return null;
-		return getSubsets(set, 0);
-	}
+	public ArrayList<ArrayList<Character>> getSubsets(ArrayList<ArrayList<Character>> set){
+        if(set == null || set.length == 0){
+            return new ArrayList<ArrayList<Character>>;
+        }
+        return getSubsets(set, 0);
+    }
 
-	public ArrayList<ArrayList<Character>> getSubsets(ArrayList<Character> set, int index){
-		ArrayList<ArrayList<Character>> allSubsets;
-		if(set.size() == index){   // Base case (set.size() = index) - add empty set
-			allSubsets = new ArrayList<ArrayList<Character>>();
-			allSubsets.add(new ArrayList<Character>());   // empty set
-		}
-		else{
-			allSubsets = getSubsets(set, index + 1);
-			// Get one more element
-			char ch = set.get(index);
-			ArrayList<ArrayList<Character>> moreSubsets = new ArrayList<ArrayList<Character>>();
-			for(ArrayList<Character> subset : allSubsets){
-				ArrayList<Character> newSubset = new ArrayList<Character>();
-				newSubset.addAll(subset);
-				newSubset.add(ch);
-				moreSubsets.add(newSubset);
-			}
-			allSubsets.addAll(moreSubsets);
-		}
-		return allSubsets;
-	}
+    private ArrayList<ArrayList<Character>> getSubsets(ArrayList<Character> set, int index){
+        ArrayList<ArrayList<Character>> allSubsets = new ArrayList<ArrayList<Character>>();
+        if(index == set.size()){
+            allSubsets.add(new ArrayList<Character>());
+        }
+        else{
+            allSubsets = getSubsets(set, index + 1);
+            char ch = set.get(index);
+            ArrayList<ArrayList<Character>> more = new ArrayList<ArrayList<Character>>();
+            for(ArrayList<Character> subset : allSubsets){
+                ArrayList<Character> newSubset = new ArrayList<Character>();
+                newSubset.addAll(subset);
+                newSubset.add(ch);
+                more.add(newSubset);
+            }
+            allSubsets.addAll(more);
+        }
+        return allSubsets;
+    }
 }
 
 public class AllSubsets{
@@ -112,29 +111,28 @@ E.g.
 */
 public class Solution {
     public ArrayList<ArrayList<Integer>> subsets(int[] S) {
-        if(S == null)
-            return null;
-        return subsets(S, S.length - 1);
+        if(S == null || S.length == 0)
+            return new ArrayList<ArrayList<Integer>>();
+        return subsets(S, 0);
     }
     
-    public ArrayList<ArrayList<Integer>> subsets(int[] S, int index){
-        ArrayList<ArrayList<Integer>> allSubsets;
-        if(-1 == index){
-            allSubsets = new ArrayList<ArrayList<Integer>>();
+    private ArrayList<ArrayList<Integer>> subsets(int[] S, int index){
+        ArrayList<ArrayList<Integer>> allSubsets = new ArrayList<ArrayList<Integer>>();
+        if(index == S.length){
             allSubsets.add(new ArrayList<Integer>());
         }
         else{
-            allSubsets = subsets(S, index - 1);
+            allSubsets = subsets(S, index + 1);
             int i = S[index];
-            ArrayList<ArrayList<Integer>> moreSubsets = new ArrayList<ArrayList<Integer>>();
+            ArrayList<ArrayList<Integer>> more = new ArrayList<ArrayList<Integer>>();
             for(ArrayList<Integer> subset : allSubsets){
                 ArrayList<Integer> newSubset = new ArrayList<Integer>();
                 newSubset.addAll(subset);
-                newSubset.add(0,i);
+                newSubset.add(i);
                 Collections.sort(newSubset);
-                moreSubsets.add(newSubset);
+                more.add(newSubset);
             }
-            allSubsets.addAll(moreSubsets);
+            allSubsets.addAll(more);
         }
         return allSubsets;
     }
@@ -143,28 +141,29 @@ public class Solution {
 // Combinatorics
 public class Solution {
     public ArrayList<ArrayList<Integer>> subsets(int[] S) {
-        if(S == null)
-            return null;
         ArrayList<ArrayList<Integer>> allSubsets = new ArrayList<ArrayList<Integer>>();
-        int size = 1 << S.length;
-        for(int i = 0; i < size; i ++){
-            ArrayList<Integer> subset= convertToSet(S, i);
-            allSubsets.add(subset);
+        if(S == null || S.length == 0)
+            return allSubsets;
+        int max = 1 << S.length;
+        for(int i = 0; i < max; i ++){
+            allSubsets.add(convertToSubset(S, i));
         }
         return allSubsets;
     }
     
-    public ArrayList<Integer> convertToSet(int[] S, int x){
+    private ArrayList<Integer> convertToSubset(int[] S, int x){
         ArrayList<Integer> subset = new ArrayList<Integer>();
-        for(int i = x, index = 0; i > 0; i >>= 1, index ++){
-            if((i & 1) == 1)
+        int index = 0;
+        for(int i = x; i > 0; i >>= 1){
+            if( (i & 1) == 1){
                 subset.add(S[index]);
+            }
+            index ++;
         }
         Collections.sort(subset);
         return subset;
     }
 }
-
 
 
 

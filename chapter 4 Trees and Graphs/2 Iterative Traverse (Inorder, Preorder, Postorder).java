@@ -106,8 +106,8 @@ public class Solution {
         if(root == null)
             return list;
             
-        Stack<Integer> reverse = new Stack<Integer>();
         Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<Integer> reverse = new Stack<Integer>();
         TreeNode cur = root;
         stack.push(cur);
 

@@ -57,8 +57,6 @@ skip it. That only takes O(1) time.
 
 public class Solution {
     public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
         if(num.length < 1){
             return results;

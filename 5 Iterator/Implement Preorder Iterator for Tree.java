@@ -3,7 +3,7 @@ import java.util.*;
 class Tree implements Iterable<Integer>{
     TreeNode root = null;
 
-    public Tree(TreeNode t){
+    Tree(TreeNode t){
         root = t;
     }
 
@@ -11,7 +11,7 @@ class Tree implements Iterable<Integer>{
         return new MyIterator();
     }
 
-    private class MyIterator implements PreOrderIterator<Integer>{
+    private class MyIterator implements PreorderIterator<Integer>{
         Stack<TreeNode> stack = new Stack<TreeNode>();
         TreeNode cur = null;
 
@@ -19,11 +19,9 @@ class Tree implements Iterable<Integer>{
             cur = root;
             stack.push(cur);
         }
-
         public boolean hasNext(){
-            return stack.isEmpty();
+            return !stack.isEmpty();
         }
-
         public Integer next(){
             if(!hasNext())
                 throw new NoSuchElementException();
@@ -34,9 +32,14 @@ class Tree implements Iterable<Integer>{
                 stack.push(cur.left);
             return (Integer)cur.val;    
         }
-
         public void remove(){}
     }
+}
+
+interface PreorderIterator<Integer> extends Iterator<Integer> { 
+  public boolean hasNext();
+  public Integer next(); 
+  public void remove();
 }
 
 class TreeNode {
@@ -65,7 +68,16 @@ public class Test  {
         n4.right = n6;
         n5.left = n7;
 
-        PreOrderTree it = new PreOrderTree(root);
+        Tree tree = new Tree(root);
+        
+        // Check 1
+        for(Integer i : tree)
+            System.out.println(i);
+        
+
+        System.out.println("------------");
+        // Check 2
+        Iterator<Integer> it = tree.iterator();
         while(it.hasNext()){
             System.out.println(it.next());
         }

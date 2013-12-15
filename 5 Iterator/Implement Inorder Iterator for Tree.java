@@ -1,17 +1,15 @@
 import java.util.*;
 
 class Tree implements Iterable<Integer>{
-    TreeNode root;
-
-    InOrderTree(TreeNode t){
+    TreeNode root = null;
+    Tree(TreeNode t){
         root = t;
     }
 
     public Iterator<Integer> iterator(){
         return new MyIterator();
     }
-
-    private class MyIterator implements InOrderIterator<Integer>{
+    private class MyIterator implements InorderIterator<Integer>{
         Stack<TreeNode> stack = new Stack<TreeNode>();
         TreeNode cur = null;
 
@@ -24,30 +22,27 @@ class Tree implements Iterable<Integer>{
                 }
             }
         }
-
         public boolean hasNext(){
-            return stack.isEmpty();
+            return !stack.isEmpty();  // IMPORTANT!!!    !stack.isEmpty()
         }
-
         public Integer next(){
             if(!hasNext())
                 throw new NoSuchElementException();
 
             cur = stack.pop();
             TreeNode node = cur;
-            cur = cur.right；
+            cur = cur.right;
             while(cur != null){
                 stack.push(cur);
                 cur = cur.left;
             }
             return (Integer)node.val;
         }
-
         public void remove(){}
     }
 }
 
-interface InOrderIterator<Integer> extends Iterator<Integer> { 
+interface InorderIterator<Integer> extends Iterator<Integer> { 
   public boolean hasNext();
   public Integer next(); 
   public void remove();
@@ -79,7 +74,16 @@ public class Test  {
         n4.right = n6;
         n5.left = n7;
 
-        InOrderTree it = new InOrderTree(root);
+        Tree tree = new Tree(root);
+        
+        // Check 1
+        for(Integer i : tree)
+            System.out.println(i);
+        
+
+        System.out.println("------------");
+        // Check 2
+        Iterator<Integer> it = tree.iterator();
         while(it.hasNext()){
             System.out.println(it.next());
         }

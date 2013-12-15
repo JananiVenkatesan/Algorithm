@@ -20,14 +20,32 @@ public class Solution {
         }
         return single;
     }
-}public class Solution {
-    public int singleNumber(int[] A) {
+}
+
+/*
+创建一个长度为32的数组a，a[i]表示所有数字在i位出现的次数。
+假如a[i]是3的整数倍，则忽略；否则就把该位取出来组成答案。
+空间复杂度O(1).
+*/
+
+public class Solution {
+    public int singleNumber(int[] A){
         if(A == null || A.length == 0)
             return 0;
-            
-        int n = A[0];
-        for(int i = 1; i < A.length; i ++)
-            n = n^A[i];
-        return n;
+        
+        int[] count = new int[32];
+        int result = 0;
+        for(int i = 0; i < 32; i ++){
+            count[i] = 0;
+            for(int j = 0; j < A.length; j ++){
+                if( ((A[j] >> i) & 1) == 1)
+                    count[i] = (count[i] + 1) % 3;
+            }
+            result |= (count[i] << i);
+        }
+        return result;
     }
 }
+
+
+

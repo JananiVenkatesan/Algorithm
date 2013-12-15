@@ -1,17 +1,11 @@
 /*
-
 Problem:
-
 	Given a positive integer, print the next smallest and the next 
-largest number that have the same number of 7 bits in their binary 
+largest number that have the same number of 1 bits in their binary 
 representation.
 
-
-
-
 Solution:
-
-Bit Manipulation Approach for Get Next Number
+	Bit Manipulation Approach for Get Next Number
 
 	A relatively easy way of doing this is to count how many 
 ones are to the right of p, clear all the bits from 0 until p, and
@@ -19,18 +13,35 @@ then add back in (c1 - 1) ones. Let c1 be the number of ones to the
 right of p and c0 be the number of zeros to the right of p.
 
 	page 245
-
 */
-
 public int getNext(int n){
-	/* 
-		n = 11 0110 0111 1100
-	Compute c0 and c1 */
 	int c = n;
+	int c0 = 0, c1 = 0;
+
+	while( ((c & 1) == 0) && (c != 0) ){
+		c0 ++;
+		c = c >> 1;
+	}
+	while( ((c & 1) == 1)){
+		c1 ++;
+		c = c >> 1;
+	}
+	int p = c0 + c1;
+	if(p == 31 || p == 0)
+		return -1;
+
+	n = n | (1 << p);
+	n = n & ~((1 << p) - 1);
+	n = n | (1 << (c1 - 1)) - 1;
+	return n; 
+}
+
+public int getNext(int n){  // n = 11 0110 0111 1100
+	int c  = n;
 	int c0 = 0;
 	int c1 = 0;
 	// Count the number of zeros to the right of p 
-	while( ((c & 1) == 0) && (c != 0) ){ // c & 00 000 0000 0001
+	while( ((c & 1) == 0) && (c != 0) ){  // c & 00 000 0000 0001
 		c0 ++;
 		c = c >> 1;
 	}
@@ -41,8 +52,7 @@ public int getNext(int n){
 		c = c >> 1;
 	}
 
-	/* Error: if n == 11..1100...00, then there is no bigger 
-	number with the same number of 1s. */
+	/* Error: if n == 11..111  || 11..1100...00, then there is no bigger number with the same number of 1s. */
 	if(c0 + c1 == 31 || c0 + c1 == 0){
 		return -1;
 	}
@@ -74,7 +84,6 @@ public int getNext(int n){
 }
 
 /*
-	
 Bit Manipulation Approach for Get Previous Number
 
 	1. Compute c0 and c1. Note that c1 is the number of trailing ones, 
@@ -110,7 +119,7 @@ public int getPrev(int n){
 	}
 
 	int p = c0 + c1;  // position of rightmost non-trailing one
-	n &= (~0) << (p + 1)  // clears from bit p onwards
+	n &= (~0) << (p + 1);  // clears from bit p onwards
 	
 	int mask = (1 << (c1 + 1)) - 1;  // Sequence of (cl+1) ones
 	n |= mask << (c0 - 1);
