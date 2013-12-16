@@ -1,5 +1,4 @@
 /*
-
 Given an array S of n integers, are there elements a, b, c in S such 
 that a + b + c = 0? Find all unique triplets in the array which gives 
 the sum of zero.
@@ -16,7 +15,6 @@ The solution set must not contain duplicate triplets.
 
 */
 
-
 public class Solution {
     public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
         ArrayList<ArrayList<Integer>> lists = new ArrayList<ArrayList<Integer>>();
@@ -25,35 +23,35 @@ public class Solution {
         }
         
         Arrays.sort(num);
-        for(int i = 0; i < num.length; i ++){
-            if(i > 0 && num[i - 1] == num[i]){
+        for(int i = 0; i < num.length - 2; i ++){
+            if(i > 0 && num[i - 1] == num[i]){  // IMPORTANT!!! ignore duplicates
                 continue;
             }
-            int left = i + 1, right = num.length - 1;
+            int left = i + 1, right = num.length - 1, complement = 0 - num[i];
             while(left < right){
-                int sum = num[i] + num[left] + num[right];
-                if(sum < 0){
-                    left ++;
-                }
-                else if(sum > 0){
-                    right --;
-                }
-                else{
-                    ArrayList<Integer> list = new ArrayList<Integer>();
-                    list.add(num[i]);
-                    list.add(num[left]);
-                    list.add(num[right]);
-                    lists.add(list);
+                int temp = num[left] + num[right];
+                if(temp == complement){
+                    ArrayList<Integer> l = new ArrayList<Integer>();
+                    l.add(num[i]);
+                    l.add(num[left]);
+                    l.add(num[right]);
+                    lists.add(l);
                     
-                    left ++;
-                    while(left < right && num[left] == num[left - 1]){
+                    left ++;  // IMPORTANT!!! ignore duplicates
+                    while(left < right && num[left - 1] == num[left]){
                         left ++;
                     }
                     
-                    right --;
-                    while(left < right && num[right] == num[right + 1]){
+                    right --;  // IMPORTANT!!! ignore duplicates
+                    while(left < right && num[right + 1] == num[right]){
                         right --;
                     }
+                }
+                else if(temp < complement){
+                    left ++;
+                }
+                else{
+                    right --;
                 }
             }
         }
@@ -62,7 +60,6 @@ public class Solution {
 }
 
 // HashMap 1
-
 public class Solution {
     public ArrayList<ArrayList<Integer>> threeSum(int[] num){
 		ArrayList<ArrayList<Integer>> lists = new ArrayList<ArrayList<Integer>>();
@@ -88,11 +85,8 @@ public class Solution {
 		    int complement = 0 - num[i];
 		    if(hm.containsKey(complement)){
 		        HashMap<Integer, Integer> index = hm.get(complement);
-		        Set<Integer> set = index.keySet();
-		        Iterator<Integer> it = set.iterator();
-		        while(it.hasNext()){
+		        for(Integer key : index.keySet())
 		            ArrayList<Integer> list = new ArrayList<Integer>();
-		            int key = it.next();
 		            int value = index.get(key);
 		            list.add(num[i]);
 		            list.add(key);
@@ -108,7 +102,6 @@ public class Solution {
 }
 
 // HashMap 2
-
 public class Solution {
      public ArrayList<ArrayList<Integer>> threeSum(int[] num){
 		ArrayList<ArrayList<Integer>> lists = new ArrayList<ArrayList<Integer>>();
@@ -122,9 +115,9 @@ public class Solution {
 				(hm.get(num[i])).add(i);
 			}
 			else{
-				ArrayList<Integer> al = new ArrayList<Integer>();
-				al.add(i);
-				hm.put(num[i], al);
+				ArrayList<Integer> l = new ArrayList<Integer>();
+				l.add(i);
+				hm.put(num[i], l);
 			}
 		}
 

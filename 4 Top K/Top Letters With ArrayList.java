@@ -26,6 +26,7 @@ public class TopLettersWithArrayList{
 			}
 			else{
 				Collections.sort(list, new Comparator<LetterCount>(){
+					@Override
 					public int compare(LetterCount l1, LetterCount l2){
 						return l1.count - l2.count;
 					}
@@ -38,6 +39,7 @@ public class TopLettersWithArrayList{
 		}
 		
 		Collections.sort(list, new Comparator<LetterCount>(){
+			@Override
 			public int compare(LetterCount l1, LetterCount l2){
 				return l1.ch - l2.ch;
 			}

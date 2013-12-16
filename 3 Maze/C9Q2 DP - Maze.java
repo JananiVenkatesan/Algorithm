@@ -7,14 +7,17 @@ robot from the top left to the bottom right.
 
 // Recurse
 public ArrayList<Pos> getPath(int x, int y){
+	if(x < 0 || y < 0)
+		return null;
 	ArrayList<Pos> path = new ArrayList<Pos>();
-	return getPath(x, y, path);
+	getPath(x, y, path);
+	return path;
 }
 
 public boolean getPath(int x, int y, ArrayList<Pos> path){
 	Pos p = new Pos(x, y);
-	path.add(p);
 	if(x == 0 && y == 0){
+		path.add(p);
 		return true;   // found a path
 	}
 	boolean feasible = false;
@@ -24,8 +27,8 @@ public boolean getPath(int x, int y, ArrayList<Pos> path){
 	if(!feasible && y >= 1 && !isBlocked(x, y - 1, path)){  // Try down
 		feasible = getPath(x, y - 1, path);  // go up!
 	}
-	if(!feasible){
-		path.remove(p);
+	if(feasible){
+		path.add(p);
 	}
 	return feasible;
 }
@@ -40,11 +43,12 @@ public ArrayList<Pos> getPath(int x, int y){
 public boolean getPath(int x, int y, 
 			ArrayList<Pos> path, HashMap<Pos, Boolean> hm){
 	Pos p = new Pos(x, y);
+	if(x == 0 && y == 0){
+		path.add(p)
+		return true;  // found a path 
+	}
 	if(hm.containsKey(p)){  // Already visited this cell
 		return hm.get(p);
-	}
-	if(x == 0 && y == 0){
-		return true;  // found a path 
 	}
 	boolean feasible = false;
 	if(x >= 1 && !isBlocked(x - 1, y)){  // try left
@@ -72,8 +76,8 @@ public ArrayList<Pos> getPath(Pos p){
 	return getPath(p, path);
 }
 public boolean getPath(Pos p, ArrayList<Pos> path){
-	path.add(p);
 	if(isEnd(p)){
+		path.add(p);
 		return true;
 	}
 	boolean feasible = false;
@@ -82,8 +86,8 @@ public boolean getPath(Pos p, ArrayList<Pos> path){
 			feasible = getPath(move(p, i), path);
 		}
 	}
-	if(!feasible){
-		path.remove(p);
+	if(feasible){
+		path.add(p);
 	}
 	return feasible;
 }

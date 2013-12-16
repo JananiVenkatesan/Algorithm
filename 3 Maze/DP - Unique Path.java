@@ -6,6 +6,8 @@ in time. The robot is trying to reach the bottom-right corner
 of the grid.
 
     How many possible unique paths are there?
+
+    count[i][j] = count[i - 1][j] + count[i][j - 1]
 */
 
 public class Solution {

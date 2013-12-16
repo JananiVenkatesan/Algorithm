@@ -15,21 +15,19 @@ class Solution{
                 hm.put(sum, list);
             }
         }
-        int start = 0, end = 0, maxLength = 0;
-        Collection<ArrayList<Integer>> coll = hm.values();
-        for(ArrayList<Integer> list : coll){
-            if(list.size() > 1){
-                Collections.sort(list);
-                int length = list.get(list.size() - 1) - list.get(0);
+        int start = 0, end = 0, max = 0;
+        for(ArrayList<Integer> l : hm.values()){
+            if(l.size() > 1){
+                int length = l.get(l.size() - 1) - l.get(0);
                 if(length > maxLength){
-                    maxLength = length;
-                    end =  list.get(list.size() - 1);
-                    start = list.get(0);
+                    max = length;
+                    end =  l.get(l.size() - 1);
+                    start = l.get(0);
                 }
             }
         }
         System.out.println("start="+start+"  end="+end);
-        return maxLength;
+        return max;
     }
 }
 

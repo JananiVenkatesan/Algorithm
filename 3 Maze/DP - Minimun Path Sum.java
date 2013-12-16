@@ -24,21 +24,23 @@ public class Solution {
         return minPathSum(grid, 0, 0);
     } 
     
-    public int minPathSum(int[][] grid, int row, int col){
+    private int minPathSum(int[][] grid, int row, int col){
         if(row == grid.length - 1 && col == grid[0].length - 1){
             return grid[row][col];
         }
         // Record sums in two ways 
-        int sum1 = 0, sum2 = 0;
+        int sum = Integer.MAX_VALUE;
         if(row < grid.length - 1 && col < grid[0].length){
-            sum1 = minPathSum(grid, row + 1, col);
+            sum = minPathSum(grid, row + 1, col);
         }
         if(row < grid.length && col < grid[0].length - 1){
-            sum2 = minPathSum(grid, row, col + 1);
+            sum = Math.min(sum, minPathSum(grid, row, col + 1));
         }
-        return Math.min(sum1, sum2) + grid[row][col];
+        return sum + grid[row][col];
     }
 }
+
+
 
 // Dynamic Programming
 public class Solution {
@@ -56,25 +58,16 @@ public class Solution {
         if(count[row][col] != 0){
             return count[row][col];
         }
-        int sum1 = 0, sum2 = 0;
-        boolean flag1 = false, flag2 = false;
+        int sum = Integer.MAX_VALUE;
         if(row < grid.length - 1 && col < grid[0].length){
-            sum1 = minPathSum(grid, row + 1, col, count);
-            flag1 = true;
+            sum = Math.min(sum, minPathSum(grid, row + 1, col, count));
         }
         if(row < grid.length && col < grid[0].length - 1){
-            sum2 = minPathSum(grid, row, col + 1, count);
-            flag2 = true;
+            sum = Math.min(sum, minPathSum(grid, row, col + 1, count));
         }
-        if(flag1 && flag2){
-            count[row][col] = Math.min(sum1, sum2) + grid[row][col];
-        }
-        else if(flag1 || flag2){
-            count[row][col] = (flag1 ? sum1 : sum2) + grid[row][col];
-        }
-        else{
-            count[row][col] = grid[row][col];
-        }
+        
+        count[row][col] = sum + grid[row][col];
+        
         return count[row][col];
     }
 }

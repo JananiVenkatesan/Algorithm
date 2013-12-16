@@ -1,7 +1,5 @@
 /*
-  
-    Recursively println all the file's paths under one certain folder
-
+  Recursively println all the file's paths under one certain folder
 */
 import java.lang.*;
 import java.util.*;
@@ -13,21 +11,19 @@ class Solution{
         LinkedList<String> lists = new LinkedList<String>();
         if(file == null)
             return lists;
-        getFilePathHelper(file, lists);
+        getFilePath(file, lists);
         return lists;
     }
 
-    public void getFilePathHelper(File file, LinkedList<String> lists){
+    private void getFilePath(File file, LinkedList<String> lists){
         File[] files = file.listFiles();
         if(files == null)
             return;
+
         for(File f : files){
+            lists.add(f.getPath())
             if(f.isDirectory()){
-                lists.add(f.getPath());
-                getFilePathHelper(f, lists);
-            }
-            else{
-                lists.add(f.getPath());
+                getFilePath(f, lists);
             }
         }
     }
@@ -80,8 +76,8 @@ import java.util.*;
 public class DirFilter implements FilenameFilter {
     String afn;
     
-    DirFilter(String afn) { 
-        this.afn = afn; 
+    DirFilter(String a) { 
+        afn = a; 
     }
     public boolean accept(File dir, String name) {
            String f = new File(name).getName();

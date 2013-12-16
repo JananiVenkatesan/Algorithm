@@ -22,11 +22,8 @@ public class TopOneThousandWords{
     		}
     	}
 
-    	Scanner scanner
-
-
     	// Loop into PriorityQueue
-    	PriorityQueue<WordCount> pq = new PriorityQueue<WordCount>(10, new Comparator<WordCount>(){
+    	PriorityQueue<WordCount> pq = new PriorityQueue<WordCount>(1000, new Comparator<WordCount>(){
     		@Override
     		public int compare(WordCount c1, WordCount c2){
     			return c1.count - c2.count;
@@ -34,7 +31,7 @@ public class TopOneThousandWords{
     	});
     	Collection<WordCount> collection = hm.values();
     	for(WordCount w : collection){
-    		if(pq.size() < 10){
+    		if(pq.size() < 1000){
     			pq.add(w);
     		}
     		else{

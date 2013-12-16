@@ -31,8 +31,14 @@ Collection<String> values = map.values();  // 注意要给 Collection 添加泛�
 Iterator<String> it = values.iterator();
 
 
+方法二.1： 通过Map转成Set就可以迭代 
+Map<Integer, String> map = new HashMap<Integer,String>();
+for(Integer i : map.keySet()){
+	String s = map.get(i);
+}
 
-方法二： 通过Map转成Set就可以迭代 — entrySet — public Set < Map.Entry<K,V> > entrySet();
+
+方法二.2： 通过Map转成Set就可以迭代 — entrySet — public Set < Map.Entry<K,V> > entrySet();
    该方法将键和值的映射关系作为对象存储到了Set集合中， 而这个映射关系的类型就是Map.Entity 类型（结婚证）
 
 Map<Integer, String> map = new HashMap<Integer,String>();

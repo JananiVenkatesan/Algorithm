@@ -1,10 +1,9 @@
-    JDK的 PriorityQueue, 它是使用最大堆来实现的
-    
+    JDK的PriorityQueue是使用最小堆来实现的
     如果不提供Comparator的话，优先队列中元素默认按自然顺序排列，也就是数字默认是小
     的在队列头，字符串则按字典序排列
 
 	peek()
-		Retrieves, but does not remove, <the head of this queue>, or 
+		Retrieves but does not remove, <the head of this queue>, or 
 		returns null if this queue is empty.
  	poll()
     	Retrieves and removes <the head of this queue>, or returns null 

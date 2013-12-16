@@ -1,4 +1,8 @@
-// Leetcode   find Anagrams
+/*
+Given an array of strings, return all groups of strings that are anagrams.
+
+Note: All inputs will be in lower-case.
+*/ 
 
 public class Solution {
     public ArrayList<String> anagrams(String[] strs) {
@@ -14,8 +18,8 @@ public class Solution {
             hm.get(s).add(str);
         }
         
-        
-        for(String key : hm.keySet()){
+         
+        for(String key : hm.keySet()){  // IMPORTANT!!! 不用存入Collection，直接调用 hm.keySet()
             LinkedList<String> list = hm.get(key);
             if(list.size() > 1){
                 for(String str : list){

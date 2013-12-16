@@ -1,5 +1,4 @@
 /*
-
 -   Start from those boundary cells, use BFS or DFS to traverse all 
 non-flipable 'O' cells, and mark them with a special sign, say 'N'.
 
@@ -11,8 +10,6 @@ public class Solution {
     public void solve(char[][] board) {
         if(board == null)
             return;
-        if(board.length <= 0 || board[0].length <= 0) 
-            return; 
             
         int rows = board.length, cols = board[0].length;
         for(int col = 0; col < cols; col ++){
@@ -74,7 +71,6 @@ public class Solution {
 
 
 /* 
-
 Solution 2: redudant solution
 
 Traverse the whole matrix, if an element is 'O', then mark it 

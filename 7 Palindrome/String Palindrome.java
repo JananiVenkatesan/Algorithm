@@ -1,7 +1,5 @@
 /*
-	
 	check if string is palindrome
-
 */
 
 public boolean isPalindrome(String s){

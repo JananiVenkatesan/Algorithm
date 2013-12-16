@@ -1,5 +1,4 @@
 /*
-
 Problem:
 
 	Implement the "paint fill" function that one might see on many 
@@ -13,13 +12,13 @@ enum Color{
 	Black, White, Red, Yellow, Green
 }
 
-public boolean paintFill(Color[][] screen, int x, int y, Color ocolor, Color ncolor){
-	if(screen[x][y] == ncolor)
+public boolean paintFill(Color[][] screen, int x, int y, Color o, Color n){
+	if(screen[x][y] == n)
 		return false;
-	return paintFill(screen, x, y, ocolor, ncolor);
+	return paintFill(screen, x, y, o, n);
 }
 
-public boolean paintFill(Color[][] screen, int x, int y, Color ocolor, Color ncolor){
+private boolean paintHelper(Color[][] screen, int x, int y, Color o, Color n){
 	if(x < 0 || x >= screen[0].length || y < 0 || y >= screen.length){
 		return false;
 	}
