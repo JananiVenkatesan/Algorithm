@@ -1,5 +1,22 @@
-// Regular Expression Matching
+/*
+Implement regular expression matching with support for '.' and '*'.
 
+'.' Matches any single character.
+'*' Matches zero or more of the preceding element.
+
+The matching should cover the entire input string (not partial).
+
+Some examples:
+isMatch("aa","a") → false
+isMatch("aa","aa") → true
+isMatch("aaa","aa") → false
+isMatch("aa", "a*") → true
+isMatch("aa", ".*") → true
+isMatch("ab", ".*") → true
+isMatch("aab", "c*a*b") → true
+*/
+
+// Regular Expression Matching
 public class Solution {
     public boolean isMatch(String s, String p){
     	if(s == null || p == null)
@@ -23,7 +40,6 @@ public class Solution {
     	    if(isMatch(s.substring(i), p.substring(2))){
     	        return true;
     	    }
-    	    
     	    i ++;
     	}
     	// Zero
@@ -74,7 +90,6 @@ If current char match, we need to consider three subcases
 zero instance of (something) in p
 only one instance of (something) in p
 multiple instances of (something) in p
-
 */
 public boolean isMatch(String s, String p){
 	if(s.isEmpty() && 

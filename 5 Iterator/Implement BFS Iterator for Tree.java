@@ -7,60 +7,70 @@ class TreeNode {
   TreeNode(int x) { val = x; }
 }
 
-class BFSTree implements BFSTreeIterator<Integer>{
-    int cur = -1;
-    ArrayList<TreeNode> list = new ArrayList<TreeNode>();
+class BFSTree implements Iterable<Integer>{
+    TreeNode root; 
 
     public BFSTree(TreeNode node){
-      if(node != null){
-        cur = -1;
-        list.add(node);
-      }
+        if(node != null){
+            root = node;
+        }
     }
 
-    public boolean hasNext(){
-        if(cur < list.size() - 1){
-            return true;
-        }   
-        else if(cur == list.size() - 1){
-            for(TreeNode n : list){
-                if(n.left != null || n.right != null){
-                    return true;
-                }
-            }
-            return false;
-        }
-        else
-            return false;
+    public Iterator<Integer> iterator(){
+        return new MyIterator();
     }
 
-    public Integer next(){
-        if(cur < list.size() - 1){
-            cur ++;
-            return (Integer)(list.get(cur)).val;
-        }
-        else if(cur == list.size() - 1){
-            ArrayList<TreeNode> temp = new ArrayList<TreeNode>();
-            for(TreeNode n : list){
-                if(n.left != null){
-                    temp.add(n.left);
-                }
-                if(n.right != null){
-                    temp.add(n.right);
-                }
-            }
+    private class MyIterator<Integer> implements BFSTreeIterator<Integer>{
+        int cur = -1;
+        ArrayList<TreeNode> list = new ArrayList<TreeNode>();
 
-            if(temp.size() == 0){
-                throw new NoSuchElementException();
-            }
-            list = temp;
-            cur = 0;
-            return (Integer)(list.get(cur)).val;
+        public MyIterator{
+            cur = -1;
+            list.add(root));  // Initialization
         }
-        else
-            return null;
+
+        public boolean hasNext(){
+            if(cur < list.size() - 1){  // cur is not the end of the ArrayList
+                return true;
+            }   
+            else if(cur == list.size() - 1){  // cur is the end of the ArrayList
+                for(TreeNode n : list){  // Some nodes in the list have children
+                    if(n.left != null || n.right != null){
+                        return true;
+                    }
+                }
+                return false;  // All nodes in the list don't have children
+            }
+            else
+                return false;
+        }
+
+        public Integer next(){
+            if(cur < list.size() - 1){
+                cur ++;
+                return (Integer)(list.get(cur)).val;
+            }
+            if(cur == list.size() - 1){  // cur is the end of the ArrayList
+                ArrayList<TreeNode> temp = new ArrayList<TreeNode>();  // Traverse next level
+                for(TreeNode n : list){
+                    if(n.left != null){
+                        temp.add(n.left);
+                    }
+                    if(n.right != null){
+                        temp.add(n.right);
+                    }
+                }
+
+                if(temp.size() == 0){  // No more element in the tree
+                    throw new NoSuchElementException();
+                }
+                list = temp;  // Switch ArrayList
+                cur = 0;  // Reset cur
+                return (Integer)(list.get(cur)).val;
+            }
+        }
+        public void remove(){}
     }
-    public void remove(){}
 }
 
 interface BFSTreeIterator<Integer> extends Iterator<Integer> { 

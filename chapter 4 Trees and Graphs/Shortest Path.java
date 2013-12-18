@@ -1,27 +1,34 @@
+class Solution{
+	public ArrayList<Node> minPath(Graph g, Node source, Node target){
+		if(g == null)
+			return null;
+		HashMap<Node, ArrayList<Node>> hm = new HashMpa<Node, ArrayList<Node>>();
 
-public class ShortestPath{
-	public static void main(String[] args){
-		Graph theGraph = new Graph();
-		theGraph.addVertex('A'); 
-		theGraph.addVertex('C'); 
-		theGraph.addVertex('B'); 
-		theGraph.addVertex('D'); 
-		theGraph.addVertex('E');
-		
-		theGraph.addEdge(0, 1, 50); 
-		theGraph.addEdge(0, 3, 80); 
-		theGraph.addEdge(1, 2, 60); 
-		theGraph.addEdge(1, 3, 90); 
-		theGraph.addEdge(2, 4, 40); 
-		theGraph.addEdge(3, 2, 20); 
-		theGraph.addEdge(3, 4, 70); 
-		theGraph.addEdge(4, 1, 50);
+		ArrayList<Node> list = new ArrayList<Node>();
+		source.visited = true;
+		list.add(source);
+		hm.put(source, <ArrayList<Node>>list.clone());
 
-		System.out.println("Shortest path");
-		theGraph.path(); 
-		System.out.println();
-	} // end main()
-} // end class PathApp
+		while(!list.isEmpty()){
+			Node n = list.remove();
+			while( (Node adj = n.getAdjUnivisited()) != null){
+				if(adj == target){
+					ArrayList<Node> path = hm.get(n);
+					path.add(target);
+					return path;
+				}
+				adj.visited = true;
+				ArrayList<Node> prev = new ArrayList<Node>();
+				prev.addAll(hm.get(n));
+				prev.add(adj);
+				hm.put(adj, prev);
+			}
+		}
+		return null;
+	}
+}
+
+
 
 /*
 Shortest path
@@ -173,7 +180,29 @@ class Graph{
 	}
 }
 
+public class ShortestPath{
+	public static void main(String[] args){
+		Graph theGraph = new Graph();
+		theGraph.addVertex('A'); 
+		theGraph.addVertex('C'); 
+		theGraph.addVertex('B'); 
+		theGraph.addVertex('D'); 
+		theGraph.addVertex('E');
+		
+		theGraph.addEdge(0, 1, 50); 
+		theGraph.addEdge(0, 3, 80); 
+		theGraph.addEdge(1, 2, 60); 
+		theGraph.addEdge(1, 3, 90); 
+		theGraph.addEdge(2, 4, 40); 
+		theGraph.addEdge(3, 2, 20); 
+		theGraph.addEdge(3, 4, 70); 
+		theGraph.addEdge(4, 1, 50);
 
+		System.out.println("Shortest path");
+		theGraph.path(); 
+		System.out.println();
+	} // end main()
+} // end class PathApp
 
 /*
 Explanation of path() method:
