@@ -11,11 +11,11 @@ http://www.youtube.com/watch?v=_H50Ir-Tves
 public double findMedianSortedArrays(int[] A, int[] B){
 	int m = A.length, n = B.length, mid = (m + n) / 2;
 	if( m < n){
-		return findMedian(A, B, Math.max(0, mid - n), Math.min(m - 1, mid));
-	}
-	else{
-		return findMedian(B, A, Math.max(0, mid - m), Math.min(n - 1, mid));
-	}
+    	return findMedian(A, B, 0, m - 1);
+   	}
+   	else{
+   		return findMedian(B, A, 0, n - 1);
+   	}
 }
 
 

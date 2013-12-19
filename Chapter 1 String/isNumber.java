@@ -1,9 +1,9 @@
 /*
  * Returns true if the input string is a number and false otherwise
  */
-// test cases: null, "", -234.12&091@#, -.3, 00000000,  0.323
+// test cases: null, "", "-234.12&091@#", "-.3", "00000000",  "0.323", "  4"
 public boolean isNumber(String toTest){
-    // implementation here
+    toTest = toTest.trim();
     if(toTest == null || toTest.length() == 0)
         return false;    
     // Remove sign
