@@ -13,15 +13,12 @@ Solution:
     Keep tracking the sum of previous numbers. If it's getting lower 
 after adding the current one, it tells us that this number should not 
 be included in the largest-sum-subarray, so, reset the sum to 0.
-
-
 */
-
 
 public class Solution {
     public int maxSubarray(int[] A){
         int max = Integer.MIN_VALUE;
-        if(A == null)
+        if(A == null || A.length == 0)
             return max;
 
         int sum = 0;

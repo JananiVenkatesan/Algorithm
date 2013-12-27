@@ -39,7 +39,6 @@ public class Solution {
 
 
 // Solution 1: sort
-
 Arrays.sort(array, new AnagramComparator());
 
 public class AnagramComparator implements Comparator<String>{
@@ -56,7 +55,6 @@ public class AnagramComparator implements Comparator<String>{
 
 
 // Solution 2: HashMap
-
 public void sort(String[] array){
 	HashMap<String, LinkedList<String>> hm = new HashMap<String, LinkedList<String>>();
 	for(String s : array){

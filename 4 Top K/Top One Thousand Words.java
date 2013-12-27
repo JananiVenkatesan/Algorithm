@@ -29,8 +29,7 @@ public class TopOneThousandWords{
     			return c1.count - c2.count;
     		}
     	});
-    	Collection<WordCount> collection = hm.values();
-    	for(WordCount w : collection){
+    	for(WordCount w : hm.values()){
     		if(pq.size() < 1000){
     			pq.add(w);
     		}

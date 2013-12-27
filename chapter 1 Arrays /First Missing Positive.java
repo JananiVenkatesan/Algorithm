@@ -9,21 +9,20 @@
 */
 
 public class Solution {
-    
     public int firstMissingPositive(int[] A){
-		int i = 0;
-		int[] B = new int[A.length];
-		while(i < A.length){
-			if(A[i] > 0 && A[i] <= A.length){
-				B[A[i] - 1] = A[i];
-			}
-			i ++;	
-		}
-		i = 0;
-		while(i < B.length && B[i] == i + 1)
-			i ++;
-		return i + 1;
-	}
+    		int i = 0;
+    		int[] B = new int[A.length];
+    		while(i < A.length){
+    			if(A[i] > 0 && A[i] <= A.length){
+    				B[A[i] - 1] = A[i];
+    			}
+    			i ++;	
+    		}
+    		i = 0;
+    		while(i < B.length && B[i] == i + 1)
+    			i ++;
+    		return i + 1;
+  	}
 }
 
 A[0] A[1] A[2] A[3]

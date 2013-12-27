@@ -7,7 +7,6 @@ The same letter cell may not be used more than once.
 
     For example,
     Given board =
-
     [
       ["ABCE"],
       ["SFCS"],

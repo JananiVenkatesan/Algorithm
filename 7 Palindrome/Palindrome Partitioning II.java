@@ -4,7 +4,7 @@ Given a string s, partition s such that every substring of the partition is a pa
 Return the minimum cuts needed for a palindrome partitioning of s.
 
 For example, given s = "aab",
-Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
+    Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
 */
 
 public class Solution {
@@ -29,8 +29,9 @@ public class Solution {
                     left ++;
                     right --;
                 }
-                else
+                else{
                     break;
+                }
             }
             if(left >= right){
                 int c = 0;
@@ -44,7 +45,7 @@ public class Solution {
                     count.put(suffix, c);
                     list.removeLast();
                 }
-                m = m > c ? c : m;
+                min = min > c ? c : min;
             }
         }
         return min;

@@ -1,5 +1,4 @@
 /*
-
     Given a string, determine if it is a palindrome, considering 
 only alphanumeric characters and ignoring cases.
 
@@ -13,17 +12,15 @@ good question to ask during an interview.
 
     For the purpose of this problem, we define empty string as 
 valid palindrome.
-
 */
 
 public class Solution {
     public boolean isPalindrome(String s) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(s == null)
             return false;
         if(s.equals(""))
             return true;
+        
         s = s.toLowerCase();
         int i = 0, j = s.length() - 1;
         while(i < j){

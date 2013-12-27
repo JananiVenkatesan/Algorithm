@@ -1,12 +1,23 @@
+/*
+Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+For example, given
+s = "leetcode",
+dict = ["leet", "code"].
+
+Return true because "leetcode" can be segmented as "leet code".
+*/
+
 // DP
 public class Solution {
     public boolean wordBreak(String s, Set<String> dict){
+        /*
         int max = 0, min = Integer.MAX_VALUE;
         for(String s : dict){
             max = Math.max(max, s.length());
             min = Math.min(min, s.length());
         }
-
+        */
         HashSet<String> unmatched = new HashSet<String>();
         return wordBreak(s, dict, unmatched, max, min);
     }
@@ -15,10 +26,8 @@ public class Solution {
             return true;
         
         for(int i = 1; i <= s.length(); i ++){
-            if(i <)
             String prefix = s.substring(0, i);
             if(dict.contains(prefix)){
-                
                 String suffix = s.substring(i);
                 if(unmatched.contains(suffix)){
                     continue;

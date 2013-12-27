@@ -1,14 +1,5 @@
 /*
-
 Given a binary tree, return the preorder traversal of its nodes' values.
-
-For example:
-Given binary tree {1,#,2,3},
-   1
-    \
-     2
-    /
-   3
 
  * Definition for binary tree
  * public class TreeNode {
@@ -21,8 +12,6 @@ Given binary tree {1,#,2,3},
 
 public class Solution {
     public ArrayList<Integer> preorderTraversal(TreeNode root) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         ArrayList<Integer> l = new ArrayList<Integer>();
         if(root == null)    
             return l;
@@ -40,8 +29,6 @@ public class Solution {
 
 public class Solution {
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         ArrayList<Integer> l = new ArrayList<Integer>();
         if(root == null)
             return l;
@@ -59,8 +46,6 @@ public class Solution {
 
 public class Solution {
     public ArrayList<Integer> postorderTraversal(TreeNode root) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         ArrayList<Integer> l = new ArrayList<Integer>();
         if(root == null)
             return l;

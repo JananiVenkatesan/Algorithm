@@ -10,7 +10,6 @@ position of a given target value.
     For example,
         Given [5, 7, 7, 8, 8, 10] and target value 8,
         return [3, 4].
-
 */
 
 public class Solution {
@@ -19,6 +18,7 @@ public class Solution {
             return null;
         
         int index = -1;
+        // Binary Search
         int low = 0, high = A.length - 1;
         while(low <= high){
             int mid = low + (high - low) / 2;
@@ -53,3 +53,7 @@ public class Solution {
         return range;
     }
 }
+
+
+
+

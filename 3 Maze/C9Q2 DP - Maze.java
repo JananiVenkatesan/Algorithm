@@ -75,6 +75,7 @@ public ArrayList<Pos> getPath(Pos p){
 	ArrayList<Pos> path = new ArrayList<Pos>();
 	return getPath(p, path);
 }
+
 public boolean getPath(Pos p, ArrayList<Pos> path){
 	if(isEnd(p)){
 		path.add(p);

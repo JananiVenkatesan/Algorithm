@@ -11,8 +11,8 @@ isMatch("aa","a") → false
 isMatch("aa","aa") → true
 isMatch("aaa","aa") → false
 isMatch("aa", "a*") → true
-isMatch("aa", ".*") → true
-isMatch("ab", ".*") → true
+isMatch("aa", ".*") → true 
+isMatch("ab", ".*") → true   // Multiple  '.' 
 isMatch("aab", "c*a*b") → true
 */
 
@@ -87,9 +87,9 @@ public class Solution {
 That said, in the cases p has '(something)*',
 If s is empty or current char do not match, skip the '(something)*' part of p and continue to compare the rest of strings;
 If current char match, we need to consider three subcases
-zero instance of (something) in p
-only one instance of (something) in p
-multiple instances of (something) in p
+    - zero instance of (something) in p
+    - only one instance of (something) in p
+    - multiple instances of (something) in p
 */
 public boolean isMatch(String s, String p){
 	if(s.isEmpty() && 

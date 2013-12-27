@@ -36,26 +36,3 @@ public class Solution {
         return null;
     }
 }
-
-public class Solution {
-    public int[] twoSum(int[] numbers, int target) {
-        if(numbers == null)
-            return null;
-        if(numbers.length < 2)
-            return null;
-        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
-        int[] index = new int[2];
-        for(int i = 0; i < numbers.length; i ++){
-            int complement = target - numbers[i];
-            if(hm.containsKey(complement)){
-                index[0] = hm.get(complement) + 1;
-                index[1] = i + 1;
-                return index;
-            }
-            else{
-                hm.put(numbers[i], i);
-            }
-        }
-        return null;
-    }
-}

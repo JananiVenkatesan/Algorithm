@@ -42,7 +42,6 @@ of the strings.
     public String sortChar(String str){
     	char[] charArray = str.toCharArray();
     	Arrays.sort(charArray);
-    	
     	/*
         we cannot use    return charArray.toString();  
 
@@ -52,20 +51,17 @@ of the strings.
     	  StringBuilder sb = new StringBuilder;
     	  sb.toString();
 		*/
-    	  
     	return new String(charArray);
     }
 
 
 /*
-
 Solution #2: Check if the two strings have identical character counts.
     
     We can also use the definition of an anagram—two words with the same 
 character counts—to implement this algorithm. We simply iterate through 
 this code, counting how many times each character appears.Then, afterwards, 
 we compare the two arrays.
-
 */
 
 public boolean permutation(String s1, String s2){

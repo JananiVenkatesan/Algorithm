@@ -1,7 +1,7 @@
 /*
     Implement strStr().
 
-    Returns the index that a substring first time appears in a string
+    Returns the string from th index that the needle first time appears in a string
 */
 public class Solution {
     public String strStr(String haystack, String needle) {

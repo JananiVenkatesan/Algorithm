@@ -13,7 +13,6 @@ in time.
         
     The DP formular becomes 
     sum[i][j] = grid[i][j] + min( sum[i-1][j], sum[i][j-1] )
-
 */
 
 // Recursive

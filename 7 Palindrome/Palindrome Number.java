@@ -11,6 +11,8 @@ public class Solution {
     public boolean isPalindrome(int x){
         if(x < 0)
             return false;
+        if(x < 10)
+            return true;
         // Record the total number of digits
         int div = 10;
         while(x / div >= 10)

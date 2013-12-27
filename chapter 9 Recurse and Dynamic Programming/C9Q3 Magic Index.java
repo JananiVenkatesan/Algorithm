@@ -72,22 +72,3 @@ public int magicFast(int[] A, int left, int right){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -33,7 +33,7 @@ class BFSTree implements Iterable<Integer>{
             if(cur < list.size() - 1){  // cur is not the end of the ArrayList
                 return true;
             }   
-            else if(cur == list.size() - 1){  // cur is the end of the ArrayList
+            else{  // if(cur == list.size() - 1)  ->  cur is the end of the ArrayList
                 for(TreeNode n : list){  // Some nodes in the list have children
                     if(n.left != null || n.right != null){
                         return true;
@@ -41,8 +41,6 @@ class BFSTree implements Iterable<Integer>{
                 }
                 return false;  // All nodes in the list don't have children
             }
-            else
-                return false;
         }
 
         public Integer next(){

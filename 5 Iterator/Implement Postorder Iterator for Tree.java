@@ -29,7 +29,7 @@ class Tree implement Iterable<Integer>{
 		}
 
 		public boolean hasNext(){
-			return list.isEmpty();
+			return !list.isEmpty();
 		}
 
 		public Integer next(){

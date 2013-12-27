@@ -9,8 +9,6 @@
  */
 public class Solution {
     public TreeNode sortedArrayToBST(int[] num) {
-        // IMPORTANT: Please reset any member data you declared, as
-        // the same Solution instance will be reused for each test case.
         if(num == null)
             return null;
         return createBST(num, 0, num.length - 1);

@@ -1,5 +1,4 @@
 /*
-
 Problem:
     Implement a method to perform basic string compression using the counts 
 of repeated characters. For example, the string a a b c c c c c a a a would 
@@ -8,7 +7,6 @@ the original string, your method should return the original string.
 
 Solution: 
 	Time Efficiency -> O(N)
-
 */
 
 	public static String compressString(String str){

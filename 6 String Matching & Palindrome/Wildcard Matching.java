@@ -1,6 +1,24 @@
+/*
+Implement wildcard pattern matching with support for '?' and '*'.
 
+'?' Matches any single character.
+'*' Matches any sequence of characters (including the empty sequence).
+
+The matching should cover the entire input string (not partial).
+
+The function prototype should be:
+bool isMatch(const char *s, const char *p)
+
+Some examples:
+	isMatch("aa","a") → false
+	isMatch("aa","aa") → true
+	isMatch("aaa","aa") → false
+	isMatch("aa", "*") → true
+	isMatch("aa", "a*") → true
+	isMatch("ab", "?*") → true   // Multiple  '?'
+	isMatch("aab", "c*a*b") → false
+*/
 // Wildcard Matching
-
 public boolean isMatch(String s, String p){
 	if(s == null || p == null)
 		return false;
@@ -9,7 +27,7 @@ public boolean isMatch(String s, String p){
 
 	// Current is '*'
 	if(p.charAt(0) == '*'){
-		// Skip '*'
+		// Skip multiple '*'s
 		int notstart = 0;
 		while(notstart < p.length() && p.charAt(notstart) == '*'){
 			notstart ++;
@@ -22,7 +40,7 @@ public boolean isMatch(String s, String p){
 		}
 	}
 	else{  // Single char match
-		if(!s.isEmpty() && (s.charAt(0) == p.charAt(0) || p.charAt(?)))
+		if(!s.isEmpty() && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '?'))
 			return isMatch(s.substring(1), p.substring(1));
 	}
 
@@ -35,7 +53,7 @@ public boolean isMatch(String s, String p){
 
 	http://n00tc0d3r.blogspot.com/2013/05/wildcard-matching.html	
 	
-	Suppose we have a m*n table T of boolean values, where m is the 
+	Suppose we have a m * n table T of boolean values, where m is the 
 length of pattern p, n is the length of source s, and T[i][j] == true 
 means p[0..i] matches s[0..j]. After fill up the table, T[m-1][n-1] 
 will be the result for the problem.
@@ -60,7 +78,7 @@ public boolean isMatch(String s, String p){
 	matches[0] = true;
 	int pid = 0, firstMatch = 0;
 	while(pid < p.length()){
-		// Skip duplicate '*'
+		// Skip duplicated '*'
 		if(pid > 0 && p.charAt(pid) == '*' && p.charAt(pid - 1) == '*'){
 			pid ++;
 			continue;
@@ -92,14 +110,6 @@ public boolean isMatch(String s, String p){
 	}
 	return matches[s.length()];
 }
-
-
-
-
-
-
-
-
 
 
 

@@ -4,7 +4,6 @@ non-flipable 'O' cells, and mark them with a special sign, say 'N'.
 
 -   Revisit the board, flip all remaining 'O' cells to 'X' and also 
 flip back 'N' cells to 'O'.
-
 */
 public class Solution {
     public void solve(char[][] board) {
@@ -60,7 +59,7 @@ public class Solution {
     }
 
     private boolean isValid(char[][] board, int row, int col){
-        if(0 <= row && row < board.length && 0 <= col && col <board[0].length){
+        if(0 <= row && row < board.length && 0 <= col && col < board[0].length){
             return true;
         }
         else{

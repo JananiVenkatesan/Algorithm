@@ -19,8 +19,7 @@ public class TopLettersWithArrayList{
 			}
 		}
 		ArrayList<LetterCount> list = new ArrayList<LetterCount>();
-		Collection<LetterCount> collection = hm.values();
-		for(LetterCount lc : collection){
+		for(LetterCount lc : hm.values()){
 			if(list.size() < 10){
 				list.add(lc);
 			}
@@ -63,16 +62,14 @@ class LetterCount{
 	}	
 }
 /*
-
-A=394
-D=238
-E=731
-I=364
-L=281
-N=383
-O=384
-R=399
-S=352
-T=425
-
+	A=394
+	D=238
+	E=731
+	I=364
+	L=281
+	N=383
+	O=384
+	R=399
+	S=352
+	T=425
 */

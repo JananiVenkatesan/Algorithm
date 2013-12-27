@@ -23,7 +23,7 @@ public class Solution {
     
     private void partition(String s, ArrayList<String> combination, ArrayList<ArrayList<String>> list){
         if(s == null || s.length() < 1){
-            ArrayList<String> l = copyArrayList(combination); // IMPORTANT!!! 否则list里存的是combination的地址
+            ArrayList<String> l = new ArrayList<String>(combination); // IMPORTANT!!! 否则list里存的是combination的地址
             list.add(l);
             return;
         }
@@ -40,18 +40,10 @@ public class Solution {
                 }
             }
             if(left >= right){
-                
                 combination.add(s.substring(0, i + 1));
                 partition(s.substring(i + 1), combination, list);
                 combination.remove(combination.size() - 1);
             }
         }
-    }
-    private ArrayList<String> copyArrayList(ArrayList<String> combination){
-        ArrayList<String> l = new ArrayList<String>();
-        for(String s : combination){
-            l.add(s);
-        }
-        return l;
     }
 }

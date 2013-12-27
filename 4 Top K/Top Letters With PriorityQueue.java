@@ -23,8 +23,7 @@ public class TopLetters{
 				return l1.count - l2.count;
 			}
 		});
-		Collection<LetterCount> collection = hm.values();
-		for(LetterCount lc : collection){
+		for(LetterCount lc : hm.values()){
 			if(pq.size() < 10){
 				pq.add(lc);
 			}

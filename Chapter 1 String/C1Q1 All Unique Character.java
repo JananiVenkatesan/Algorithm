@@ -1,19 +1,14 @@
 /*
-
 Question:
 
 	Implement an algorithm to determine if a string has all unique 
 characters. What if you cannot use additional data structures?
 
-
-
 Solution:
-
 	Given this, one simple optimization we can make to this problem is to 
 automatically return false if the length of the string is greater than the number 
 of unique characters in the alphabet. After all, you can't have a string with 280 
 unique characters if there are only 256 possible unique characters.
-
 */
 
 
@@ -21,7 +16,7 @@ unique characters if there are only 256 possible unique characters.
 	public boolean isUniqueChars(String str){
 		if(str == null)
 			return false;
-		if(str.length()>256)
+		if(str.length() > 256)
 			return false;
 
 		boolean[] charset = new boolean[256];
