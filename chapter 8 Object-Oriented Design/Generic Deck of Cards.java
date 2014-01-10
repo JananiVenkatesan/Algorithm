@@ -4,6 +4,8 @@ Explain how you would subclass the data structures to
 implement blackjack.
 
 the deck is a standard 52-card set
+
+https://github.com/gaylemcd/ctci/tree/master/java/Chapter%208/Question8_1
 */
 
 public enum Suit{
@@ -31,6 +33,11 @@ public enum Suit{
 	}
 }
 
+/*
+    implemented Card as an abstract class, since 
+methods like value() don't make much sense without 
+a specific game attached to them.
+*/
 public abstract class Card{
 	private boolean available = true;
 
@@ -63,7 +70,7 @@ public abstract class Card{
 		available = true;
 	}
 
-	public void print() {
+	public void print(){
         String[] faceValues = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         System.out.print(faceValues[faceValue - 1]);
         switch (suit) {
@@ -84,7 +91,10 @@ public abstract class Card{
     }
 }
 
-
+/*
+	implemented Deck with generics but restricted 
+the type of T to Card
+*/
 public class Deck <T extends Card> {
 	private ArrayList<T> cards;  // all cards, dealt or not
 	private int dealtIndex = 0; // marks first undealt card
@@ -134,7 +144,7 @@ public class Deck <T extends Card> {
         return card;
 	}
 	public void print() {
-        for (Card card : cards) {
+        for(Card card : cards){
             card.print();
         }
     }
@@ -155,7 +165,7 @@ public class Hand <T extends Card>{
 		cards.add(card);
 	}
 	public void print() {
-        for (Card card : cards) {
+        for(Card card : cards){
             card.print();
         }
     }

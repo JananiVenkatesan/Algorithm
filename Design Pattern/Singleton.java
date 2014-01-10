@@ -185,11 +185,20 @@ public class Logging{
 }
 
 
+----------------------------------
 
+Enum Singleton
 
+Creation of Enum instance is thread-safe
 
+http://javarevisited.blogspot.gr/2012/07/why-enum-singleton-are-better-in-java.html
 
-
+/**
+* Singleton pattern example using Java Enumj
+*/
+public enum EasySingleton{
+    INSTANCE;
+}
 
 
 
