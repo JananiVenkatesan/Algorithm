@@ -1,17 +1,16 @@
 /*
-
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
-
- */
+*/
 
 public class Solution {
     public ListNode mergeKLists(ArrayList<ListNode> lists) {
         if(lists == null || lists.size() == 0)
             return null;
-        for(int i = lists.size() - 1; i >= 0; i --){
+        for(int i = lists.size() - 1; i >= 0; i --){  // IMPORTANT!!! From end to start
             if(lists.get(i) == null)
                 lists.remove(i);
         }
+        
         if(lists.size() == 0)
             return null;
             

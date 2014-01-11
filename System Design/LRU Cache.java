@@ -34,6 +34,15 @@ class LRUCache<K, V> implements Cache<K, V>{
 				map.remove(expiredKey);
 			}
 		}
+		/*
+		if(queue.size() >= capacity){
+			K expiredKey = queue.poll();
+			if(expiredKey != null){
+				map.remove(expiredKey);
+			}
+		}
+		*/
+
 		queue.add(key);
 		map.put(key, value);
 		printMapQueue();

@@ -1,4 +1,8 @@
 /*
+
+PREORDER traverse!!!
+
+http://leetcode.com/2010/09/serializationdeserialization-of-binary.html
 http://www.cs.usfca.edu/~galles/cs245/lecture/lecture9.pdf
 http://stackoverflow.com/questions/4611555/how-to-serialize-binary-tree/18422820#18422820
 */
@@ -78,6 +82,35 @@ class SerializeTree{
 		}
 	}
 }
+
+/*
+void readBinaryTreeHelper(TreeNode root, boolean left, Reader reader) {
+    String token = reader.nextToken();
+    if (token == '#') {
+    	return;
+  	} 
+  	else {
+    	TreeNode newNode = new TreeNode(Integer.parseInteger(token));
+    	if (left) 
+      		root.left = newNode;
+    	else 
+      		root.right = newNode;
+    	readBinaryTreeHelper(newNode, true, reader);
+    	readBinaryTreeHelper(newNode, false, reader);
+  	}
+ 
+TreeNode readBinaryTree(Reader reader) {
+  	String token = reader.nextToken();
+  	if (token == '#') {
+   		return null;
+  	else {
+    	Node root = new TreeNode(Integer.parseInteger(token));
+    	readBinaryTreeHelper(root, true, reader);
+    	readBinaryTreeHelper(root, false, reader);
+    	return root;
+  	}
+}
+*/
 
 public class Test{
 	public static void printTree(TreeNode node){
