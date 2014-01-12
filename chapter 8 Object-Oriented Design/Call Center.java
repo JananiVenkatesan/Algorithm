@@ -9,6 +9,8 @@ not free or notable to handle it, then the call should be escalated
 to a director. Design the classes and data structures for this 
 problem. Implement a method dispatchCall() which assigns a call to 
 the first available employee.
+
+https://github.com/gaylemcd/ctci/tree/master/java/Chapter%208/Question8_2
 */
 
 
@@ -16,7 +18,7 @@ the first available employee.
 	CallHandler is implemented as a singleton class. It represents 
 the body of the program, and all calls are funneled first through it.
 */
-public class CallHandler{
+public class CallHandler{  // Singleton
 	private static CallHandler callHandler;
 
 	/* 3 levels of employees: respondents, managers, directors. */
@@ -31,7 +33,6 @@ public class CallHandler{
 	* employeeLevels[0] = respondents 
 	* employeeLevels[1] = managers
 	* employeeLevels[2] = directors */
-
 	ArrayList<ArrayList<Employee>> employeeLevels;
 
 	/* queues for each call's rank */
@@ -43,18 +44,22 @@ public class CallHandler{
 
 		// Create respondents
 		ArrayList<Employee> respondents = new ArrayList<Employee>(NUM_REPRESENTS);
-		for(int i = 0; i < NUM_REPRESENTS - 1; i ++){
+		for(int i = 0; i < NUM_REPRESENTS; i ++){
 			respondents.add(new Respondent());
 		}
 		employeeLevels.add(respondents);
 
 		// Create managers
 		ArrayList<Employee> managers = new ArrayList<Employee>(NUM_MANAGERS);
-		managers.add(new Manager());
+		for(int i = 0; i < NUM_MANAGERS; i ++){
+			managers.add(new Manager());
+		}
 		employeeLevels.add(managers);
 
 		ArrayList<Employee> directors = new ArrayList<Employee>(NUM_DIRECTORS);
-		directors.add(new Director());
+		for(int i = 0; i < NUM_DIRECTORS; i ++){
+			directors.add(new Director());
+		}
 		employeeLevels.add(directors);
 	}
 
@@ -66,7 +71,7 @@ public class CallHandler{
 	}
 
 	/* Gets the first available employee who can handle this call. */
-	public Employee getHandlerForCall(Call call){
+	public Employee getEmployeeForCall(Call call){
 		for(int level = call.getRank().getValue(); level < LEVELS - 1; level ++){
 			ArrayList<Employee> employeeLevel = employeeLevels.get(level);
 			for(Employee e : employeeLevel){
@@ -87,10 +92,10 @@ public class CallHandler{
 	/* Routes the call to an available employee, or saves in a queue if no employee available. */
 	public void dispatchCall(Call call){
 		/* Try to route the call to an employee with minimal rank. */
-		Employee e = getHandlerForCall(call);
+		Employee e = getEmployeeForCall(call);
 		if(e != null){
 			e.receiveCall(call);
-			call.setHandler(e);
+			call.setEmployee(e);
 		}else{
 			/* Place the call into corresponding call queue according to its rank. */
 			call.reply("Please wait for free employee to reply");
@@ -102,7 +107,7 @@ public class CallHandler{
 	 * Return true if we were able to assign a call, false otherwise. */
 	public boolean assignCall(Employee e){
 		/* Check the queues, starting from the highest rank this employee can serve. */
-		for(int rank = emp.getRank().getValue(); rank >= 0; rank --){
+		for(int rank = e.getRank().getValue(); rank >= 0; rank --){
 			ArrayList<Call> queue = callQueues.get(rank);
 
 			/* Remove the first call, if any */
@@ -118,7 +123,7 @@ public class CallHandler{
 	}
 }
 
-public enum Rank{
+public enum Rank{  // Enum type
 	Responder(0), Manager(1), Director(2);
 
 	private int value;
@@ -132,16 +137,16 @@ public enum Rank{
 	}
 }
 
-/* Call represents acall froma user. A call hasa minimumrank and isassigned 
-* to the first employee who can handle it.
+/* Call represents a call from a user. A call has a minimum rank and is
+* assigned to the first employee who can handle it.
 */
 public class Call{
-	/* Minimal rank of employee whocan handle this call. */
+	/* Minimal rank of employee who can handle this call. */
 	private Rank rank;
 	/* Person who is calling. */
 	private Caller caller;
 	/* Employee who is handling call. */
-	private Employee handler;
+	private Employee employee;
 
 	public Call(Caller c){
 		rank = Rank.Responder;
@@ -149,8 +154,8 @@ public class Call{
 	}
 
 	/* Set employee who is handling call */
-	public void setHandler(Employee e){
-		handler = e;
+	public void setEmployee(Employee e){
+		employee = e;
 	}
 
 	/* Play recorded message to the customer. */
@@ -161,7 +166,6 @@ public class Call{
 	public Rank getRank(){
 		return rank;
 	}
-
 	public void setRank(Rank r){
 		rank = r;
 	}
@@ -255,7 +259,23 @@ public abstract class Employee{
     }
 }
 
+class Respondent extends Employee{
+	public Respondent(){
+		rank = Rank.Responder;
+	}
+}
 
+class Manager extends Employee{
+	public Manager(){
+		rank = Rank.Manager;
+	}
+}
+
+class Director extends Employee{
+	public Director(){
+		rank = Rank.Director;
+	}
+}
 
 
 
