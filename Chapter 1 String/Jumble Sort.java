@@ -63,8 +63,8 @@ public class Solution {
         String line = br.readLine();
         if(line == null)
             System.out.println(null);
-        
-        String[] tokens = line.split(" ");
+         
+        String[] tokens = line.split("\\s+");  // IMPORTANT!!! split by multiple " "
         boolean[] isInt = new boolean[tokens.length];
         LinkedList<Integer> int_list = new LinkedList<Integer>();
         LinkedList<String> string_list = new LinkedList<String>();
