@@ -24,7 +24,7 @@ class BFSTree implements Iterable<Integer>{
         int cur = -1;
         ArrayList<TreeNode> list = new ArrayList<TreeNode>();
 
-        public MyIterator{
+        public MyIterator(){
             cur = -1;
             list.add(root));  // Initialization
         }
