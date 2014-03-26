@@ -13,7 +13,9 @@ class Shape{
 
 	// opt 1: 
 	public abstract void draw(Graphics g);
-	// opt 2: 
+
+	
+	// opt 2: incorect
 	public void draw(Graphics g){
 		if(this instanceof Circle)
 			g.drawCircle(coordinate, radius);
@@ -24,6 +26,9 @@ class Shape{
 		}
 	}
 }
+
+
+
 
 class Circle extends Shape{
 	int radius;
