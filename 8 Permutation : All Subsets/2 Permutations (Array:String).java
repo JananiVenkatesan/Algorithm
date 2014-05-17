@@ -16,13 +16,21 @@ public class Solution {
     
     public ArrayList<ArrayList<Integer>> permute(int[] num, int index){
         ArrayList<ArrayList<Integer>> permutations = new ArrayList<ArrayList<Integer>>();
+
+        // If index points to the end of the array, create an empty LinkedList
         if(index == num.length){
             permutations.add(new ArrayList<Integer>());
         }
-        else{
+        else{   // Else
+            // Get all permutations with (index+1) ~ (num.length-1) elements
             ArrayList<ArrayList<Integer>> perms = permute(num, index + 1);
+
+            // Get n - the integer with index
             int n = num[index];
+
+            // Loop all permutations with (index+1) ~ (num.length-1) elements
             for(ArrayList<Integer> perm : perms){
+                // Add n to each interval between elements in the existing permutation
                 for(int i = 0; i <= perm.size(); i ++){
                     ArrayList<Integer> p = new ArrayList<Integer>();
                     p.addAll(perm);
@@ -62,3 +70,46 @@ public String insertCharAt(String word, char ch, int index){
     String second = word.substring(index);
     return first + ch + second;
 }
+
+
+------------------LinkedList--------------------
+
+    public static LinkedList<LinkedList<Integer>> allPermutation(int total){
+        if(total < 1){
+            return new LinkedList<LinkedList<Integer>>();
+        }
+        
+        // Create an array of vertices index
+        int num[] = new int[total];
+        for(int i = 0; i < total; i ++){
+            num[i] = i;
+        }
+        return allPermutation(num, 0);
+    }
+    
+    public static LinkedList<LinkedList<Integer>> allPermutation(int[] num, int index){
+        LinkedList<LinkedList<Integer>> permutations = new LinkedList<LinkedList<Integer>>();
+        
+        // If index points to the end of the array, create an empty LinkedList
+        if(index == num.length){
+            permutations.add(new LinkedList<Integer>());
+        }
+        else{  // Else
+            // Get all permutations with (index+1) ~ (num.length-1) elements
+            LinkedList<LinkedList<Integer>> perms = allPermutation(num, index + 1);
+            // Get n - the integer with index
+            int n = num[index];
+            // Loop all permutations with (index+1) ~ (num.length-1) elements
+            for(LinkedList<Integer> perm : perms){
+                // Add n to each interval between elements in the existing permutation
+                for(int i = 0; i <= perm.size(); i ++){
+                    LinkedList<Integer> p = new LinkedList<Integer>();
+                    p.addAll(perm);
+                    p.add(i, n);
+                    permutations.add(p);
+                }
+            }
+        }
+        
+        return permutations;
+    }
